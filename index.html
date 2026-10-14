@@ -1,35 +1,583 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EQ-FIN | Meeting Room Bookings</title>
-<style>
-:root{font-family:Inter,"Segoe UI",Arial,sans-serif;color:#172b3b;background:#f4f6fa;--navy:#071f45;--navy2:#123b72;--teal:#1769aa;--gold:#d7b45a;--ink:#142c4d;--muted:#687b92;--line:#dce5ef;--surface:#fff;--soft:#f4f8fc}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top left,#e5eef9 0,transparent 42%),#f4f7fb;min-height:100vh}.wrap{max-width:1180px;margin:auto;padding:34px 28px 28px}.hero{position:relative;overflow:hidden;background:linear-gradient(120deg,#071f45 0%,#123b72 64%,#1769aa 100%);color:#fff;border-radius:22px;padding:30px 32px 26px;margin-bottom:24px;border:1px solid #ffffff25;box-shadow:0 18px 42px #102b431a}.hero:after{content:"";position:absolute;width:300px;height:300px;border:1px solid #ffffff13;border-radius:50%;right:-70px;top:-150px;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff05;pointer-events:none}.brand-lockup{display:flex;align-items:center;gap:13px;margin-bottom:22px;position:relative;z-index:1}.brand-name{font-size:24px;font-weight:850;letter-spacing:2px}.brand-tagline{font-size:10px;font-weight:750;letter-spacing:1.7px;color:#f0d78b;border-left:1px solid #ffffff50;padding-left:13px}.gold-rule{height:2px;background:linear-gradient(90deg,var(--gold),#e3bd5900);width:100%;margin-bottom:21px;position:relative;z-index:1}.hero h1{font-size:clamp(25px,3vw,34px);letter-spacing:-.8px;margin:0 0 8px;font-weight:750;position:relative;z-index:1}.muted{color:#718096}.hero .muted{color:#d5e2ec;font-size:14px;position:relative;z-index:1}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:24px;position:relative;z-index:1}.stat{background:#ffffff12;border:1px solid #ffffff25;padding:15px 17px;border-radius:14px;font-size:12px;color:#e5edf3;letter-spacing:.2px;backdrop-filter:blur(4px)}.stat b{display:block;font-size:28px;line-height:1.2;margin-top:7px;color:#e7cc80;font-weight:750}.grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:22px;align-items:start}.card{background:var(--surface);border:1px solid #dfe7f0;border-radius:19px;padding:25px;box-shadow:0 8px 28px #102b4308}.card h2{margin:0 0 20px;font-size:18px;letter-spacing:-.3px;color:#102e59;display:flex;align-items:center;gap:10px}.card h2:first-letter{color:var(--teal)}label{display:block;font-size:12px;font-weight:750;letter-spacing:.2px;margin:16px 0 7px;color:#334c6b}input,select{width:100%;padding:12px 13px;border:1px solid #d6e0e8;border-radius:10px;font:inherit;font-size:14px;background:#fff;color:#172b3b;transition:border-color .18s,box-shadow .18s}input:hover,select:hover{border-color:#a9bdca}input:focus,select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px #1769aa20}input::placeholder{color:#9aa8b5}button{border:0;border-radius:10px;padding:11px 14px;font:inherit;font-size:13px;font-weight:750;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s}button:active{transform:translateY(1px)}.primary{background:linear-gradient(100deg,#123b72,#1769aa);color:white;width:100%;margin-top:21px;padding:14px;box-shadow:0 6px 15px #123b7224}.primary:hover{background:linear-gradient(100deg,#0b2c59,#12559a);box-shadow:0 8px 18px #123b7230}.secondary{background:#edf3fa;color:#123b72;border:1px solid #dce5ef}.secondary:hover{background:#e0ebf7}.danger{background:#fff1f0;color:#a62d2d;padding:8px 11px;border:1px solid #ffe0dd;font-size:12px}.danger:hover{background:#ffe4e1}.message{margin-top:14px;padding:12px 14px;border-radius:10px;background:#eef5ff;color:#16477d;font-size:13px;line-height:1.45;border:1px solid #d8e6f8;display:none}.message.error{background:#fff1f0;color:#a12424;border-color:#ffd9d5}.filters{display:flex;gap:10px;align-items:center;margin-bottom:14px}.filters input{max-width:190px}.booking{border:1px solid #e4ebf0;border-radius:13px;padding:15px;margin:11px 0;display:flex;gap:13px;justify-content:space-between;align-items:center;background:#fff;transition:border-color .15s,box-shadow .15s}.booking:hover{border-color:#b8cde4;box-shadow:0 4px 14px #102b4308}.time{font-weight:800;min-width:100px;color:#1769aa;font-size:13px;background:#edf4fc;padding:9px 10px;border-radius:9px;text-align:center}.booking h3{font-size:14px;margin:0 0 6px;color:#17375f}.booking p{font-size:12px;margin:4px 0;color:#718096}.empty{padding:32px 20px;text-align:center;color:#7b8b98;background:#f8fafc;border:1px dashed #d9e3ea;border-radius:13px;font-size:13px}.note{font-size:12px;color:#7b8996;line-height:1.65;margin:20px 3px 0;padding:13px 16px;border-left:3px solid #d7b45a;background:#ffffffa8;border-radius:0 9px 9px 0}.note b{color:#465b6b}@media(max-width:800px){.grid{grid-template-columns:1fr}.wrap{padding:20px 16px}.hero{padding:24px 22px}.card{padding:21px}}@media(max-width:520px){.brand-lockup{align-items:flex-start;flex-direction:column;gap:7px}.brand-tagline{border-left:0;padding-left:0}.hero h1{font-size:24px}.stats{gap:7px}.stat{padding:12px 10px;font-size:10px}.stat b{font-size:23px}.booking{align-items:flex-start;flex-wrap:wrap}.time{min-width:82px}.danger{margin-left:auto}.card h2{font-size:17px}}
-</style></head>
-<body><main class="wrap">
-<header class="hero"><div class="brand-lockup"><div class="brand-name">EQ-FIN</div><div class="brand-tagline">AFFILIATE OF LIBERTY</div></div><div class="gold-rule"></div><h1>Meeting Room Bookings</h1><div class="muted">Advisor office <span aria-hidden="true">·</span> Five meeting rooms</div><div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(135px,1fr))"><div class="stat">Meeting Room 1<b id="count0">0</b> bookings</div><div class="stat">Meeting Room 2<b id="count1">0</b> bookings</div><div class="stat">Meeting Room 3<b id="count2">0</b> bookings</div><div class="stat">Meeting Room 4<b id="count3">0</b> bookings</div><div class="stat">Meeting Room 5<b id="count4">0</b> bookings</div></div></header>
-<div class="grid"><section class="card"><h2><span aria-hidden="true">✦</span> Make a booking</h2><form id="bookingForm">
-<label for="advisor">Advisor name</label><input id="advisor" required placeholder="Enter advisor name">
-<label for="date">Meeting date</label><input id="date" type="date" required>
-<label for="room">Meeting room</label><select id="room"><option>Meeting Room 1</option><option>Meeting Room 2</option><option>Meeting Room 3</option><option>Meeting Room 4</option><option>Meeting Room 5</option></select>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div><label for="start">Start time</label><input id="start" type="time" value="09:00" required></div><div><label for="end">End time</label><input id="end" type="time" value="10:00" required></div></div>
-<label for="purpose">Meeting purpose</label><select id="purpose"><option>Client meeting</option><option>Staff Meeting</option><option>Other</option></select>
-<button class="primary" type="submit">Confirm booking</button><div id="message" class="message" role="status"></div>
-</form></section>
-<section class="card"><h2><span aria-hidden="true">▦</span> Daily schedule</h2><label for="filterDate">Select date</label><input id="filterDate" type="date"><label for="filterRoom">Filter by room</label><select id="filterRoom"><option>All rooms</option><option>Meeting Room 1</option><option>Meeting Room 2</option><option>Meeting Room 3</option><option>Meeting Room 4</option><option>Meeting Room 5</option></select><div id="schedule"></div><button class="secondary" id="export" style="width:100%;margin-top:12px">Export bookings as CSV</button></section></div>
-<p class="note"><b>Important:</b> This HTML file is a local prototype: bookings are stored only in this browser and will NOT sync to other computers just by sharing a link. To make a genuinely shared booking link for all advisors, publish the page and connect it to a shared Microsoft 365/Outlook calendar or a central database. Avoid storing sensitive client information in this local prototype.</p>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EQ-FIN | Meeting Room Bookings</title>
+  <meta name="theme-color" content="#142b4a">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --navy: #142b4a;
+      --blue: #24558a;
+      --red: #d71920;
+      --bg: #f3f6fa;
+      --border: #e0e6ee;
+      --muted: #66758a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: #253247;
+    }
+
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 27px 20px;
+      border-bottom: 5px solid var(--red);
+    }
+
+    .header-inner, main {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand span { color: #f0444b; }
+
+    header p {
+      margin: 8px 0 0;
+      color: #d9e3f0;
+      font-size: 14px;
+    }
+
+    main { padding: 25px 18px 45px; }
+
+    .intro { margin-bottom: 23px; }
+
+    h1 {
+      color: var(--navy);
+      font-size: 27px;
+      margin: 0 0 8px;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: 19px;
+      margin: 0 0 18px;
+    }
+
+    .intro p, .muted {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.4fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 23px;
+      box-shadow: 0 4px 16px rgba(20, 43, 74, 0.045);
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 7px;
+      color: var(--navy);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #ccd6e2;
+      border-radius: 8px;
+      background: white;
+      color: #253247;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus {
+      outline: 2px solid #9bbce1;
+      border-color: var(--blue);
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 13px 17px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:disabled { opacity: .6; cursor: wait; }
+
+    .primary {
+      background: var(--red);
+      color: white;
+      width: 100%;
+    }
+
+    .primary:hover { background: #b9151b; }
+
+    .secondary {
+      background: #eaf0f7;
+      color: var(--navy);
+    }
+
+    .rooms {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 9px;
+      margin-bottom: 22px;
+    }
+
+    .room {
+      text-align: center;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 13px 5px;
+    }
+
+    .room strong {
+      display: block;
+      color: var(--navy);
+      font-size: 13px;
+    }
+
+    .room span {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .schedule-top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .schedule-top > div { flex: 1; min-width: 150px; }
+
+    .schedule-top input { margin-bottom: 12px; }
+
+    .booking-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .booking {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue);
+      border-radius: 9px;
+      padding: 15px;
+      background: #fff;
+    }
+
+    .booking-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .booking h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--navy);
+    }
+
+    .time {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    .details {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #edf3fa;
+      color: var(--navy);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 7px;
+    }
+
+    .empty, .status {
+      padding: 17px;
+      border-radius: 9px;
+      background: #f5f8fc;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .status { margin-bottom: 16px; }
+    .status.error { background: #fff0f0; color: #a21d24; }
+    .status.success { background: #eaf8ef; color: #17653a; }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      .rooms { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 420px) {
+      .rooms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card { padding: 17px; }
+      h1 { font-size: 23px; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="header-inner">
+    <div class="brand">EQ-FIN <span>|</span> LIBERTY</div>
+    <p>Shared Meeting Room Booking System</p>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <h1>Meeting Room Bookings</h1>
+    <p>Book a room, check availability and view bookings shared by the team.</p>
+  </section>
+
+  <div class="layout">
+    <section class="card">
+      <h2>Make a booking</h2>
+      <div id="formStatus" aria-live="polite"></div>
+
+      <form id="bookingForm">
+        <label for="adviser">Adviser name</label>
+        <input id="adviser" name="adviser" type="text"
+          placeholder="Enter your name" maxlength="100" required>
+
+        <label for="room">Meeting room</label>
+        <select id="room" name="room" required>
+          <option value="1">Meeting Room 1</option>
+          <option value="2">Meeting Room 2</option>
+          <option value="3">Meeting Room 3</option>
+          <option value="4">Meeting Room 4</option>
+          <option value="5">Meeting Room 5</option>
+        </select>
+
+        <label for="date">Booking date</label>
+        <input id="date" name="date" type="date" required>
+
+        <label for="start">Start time</label>
+        <input id="start" name="start" type="time" required>
+
+        <label for="end">End time</label>
+        <input id="end" name="end" type="time" required>
+
+        <label for="purpose">Meeting purpose</label>
+        <select id="purpose" name="purpose" required>
+          <option value="Client meeting">Client meeting</option>
+          <option value="Staff meeting">Staff meeting</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <button class="primary" id="submitButton" type="submit">
+          Confirm booking
+        </button>
+      </form>
+
+      <p class="muted" style="font-size:12px;margin-bottom:0">
+        Please check the shared schedule before booking.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Our meeting rooms</h2>
+
+      <div class="rooms">
+        <div class="room"><strong>Room 1</strong><span>Meeting room</span></div>
+        <div class="room"><strong>Room 2</strong><span>Meeting room</span></div>
+        <div class="room"><strong>Room 3</strong><span>Meeting room</span></div>
+        <div class="room"><strong>Room 4</strong><span>Meeting room</span></div>
+        <div class="room"><strong>Room 5</strong><span>Meeting room</span></div>
+      </div>
+
+      <div class="schedule-top">
+        <div>
+          <label for="scheduleDate">View bookings for</label>
+          <input id="scheduleDate" type="date">
+        </div>
+        <button class="secondary" id="refreshButton" type="button">
+          Refresh
+        </button>
+      </div>
+
+      <div id="scheduleStatus" class="status" aria-live="polite">
+        Connecting to the shared booking system…
+      </div>
+      <div id="bookingList" class="booking-list"></div>
+      <p class="muted" style="font-size:12px">
+        The schedule refreshes automatically every 15 seconds.
+      </p>
+    </section>
+  </div>
+
+  <div class="footer">
+    EQ-FIN, an affiliate of Liberty · Internal meeting room bookings
+  </div>
 </main>
+
 <script>
-const $=id=>document.getElementById(id);
-const today=new Date(); const localDate=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
-$('date').value=localDate;$('filterDate').value=localDate;
-let bookings=[];try{bookings=JSON.parse(localStorage.getItem('advisorRoomBookings')||'[]')}catch(e){bookings=[]}
-function save(){localStorage.setItem('advisorRoomBookings',JSON.stringify(bookings));render()}
-function msg(t,error=false){$('message').textContent=t;$('message').style.display='block';$('message').className='message'+(error?' error':'')}
-$('bookingForm').addEventListener('submit',e=>{e.preventDefault();let b={id:Date.now(),advisor:$('advisor').value.trim(),date:$('date').value,room:$('room').value,start:$('start').value,end:$('end').value,purpose:$('purpose').value};if(b.start>=b.end){msg('End time must be later than start time.',true);return}if(bookings.some(x=>x.date===b.date&&x.room===b.room&&b.start<x.end&&b.end>x.start)){msg('That room is already booked during this time. Choose another time or room.',true);return}bookings.push(b);save();msg('Booking saved successfully.');$('advisor').value=''});
-$('filterDate').addEventListener('change',render);$('filterRoom').addEventListener('change',render);
-function render(){['Meeting Room 1','Meeting Room 2','Meeting Room 3','Meeting Room 4','Meeting Room 5'].forEach((r,i)=>$('count'+i).textContent=bookings.filter(b=>b.room===r).length);let list=bookings.filter(b=>b.date===$('filterDate').value&&($('filterRoom').value==='All rooms'||b.room===$('filterRoom').value)).sort((a,b)=>a.start.localeCompare(b.start));$('schedule').innerHTML=list.length?list.map(b=>`<article class="booking"><div class="time">${esc(b.start)}–${esc(b.end)}</div><div style="flex:1;min-width:0"><h3>${esc(b.purpose)}</h3><p>${esc(b.room)}</p><p>Advisor: ${esc(b.advisor)}</p></div><button class="danger" data-delete="${b.id}" aria-label="Cancel booking">Cancel</button></article>`).join(''):'<div class="empty">No bookings for this date and filter.</div>';document.querySelectorAll('[data-delete]').forEach(btn=>btn.addEventListener('click',()=>{let b=bookings.find(x=>x.id===Number(btn.dataset.delete));if(b&&confirm(`Cancel ${b.room} booking?`)){bookings=bookings.filter(x=>x.id!==b.id);save()}}))}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-$('export').addEventListener('click',()=>{let rows=[['Date','Room','Start','End','Advisor','Purpose'],...bookings.sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start)).map(b=>[b.date,b.room,b.start,b.end,b.advisor,b.purpose])];let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');let url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));let a=document.createElement('a');a.href=url;a.download='meeting-room-bookings.csv';a.click();URL.revokeObjectURL(url)});
-render();
-</script></body></html>
+  // Supabase connection
+  const SUPABASE_URL = "https://gwkwoduktxmhnpdajnbv.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_V3vV1ZDB6LHwV0SHVXUVKQ_03dqnBBJ";
+
+  const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  const form = document.getElementById("bookingForm");
+  const formStatus = document.getElementById("formStatus");
+  const scheduleStatus = document.getElementById("scheduleStatus");
+  const bookingList = document.getElementById("bookingList");
+  const dateInput = document.getElementById("date");
+  const scheduleDate = document.getElementById("scheduleDate");
+  const submitButton = document.getElementById("submitButton");
+
+  function localDateString() {
+    const now = new Date();
+    const offset = now.getTimezoneOffset();
+    return new Date(now.getTime() - offset * 60000)
+      .toISOString().slice(0, 10);
+  }
+
+  const today = localDateString();
+  dateInput.min = today;
+  dateInput.value = today;
+  scheduleDate.value = today;
+
+  function showMessage(element, message, type = "") {
+    element.textContent = message;
+    element.className = type ? "status " + type : "status";
+  }
+
+  function showFormMessage(message, type = "") {
+    formStatus.replaceChildren();
+    if (!message) return;
+
+    const div = document.createElement("div");
+    div.className = "status" + (type ? " " + type : "");
+    div.textContent = message;
+    formStatus.appendChild(div);
+  }
+
+  function formatTime(value) {
+    return value.slice(0, 5);
+  }
+
+  function displayBookings(bookings) {
+    bookingList.replaceChildren();
+
+    if (!bookings || bookings.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "empty";
+      empty.textContent = "No bookings for this date yet.";
+      bookingList.appendChild(empty);
+      return;
+    }
+
+    bookings.forEach(booking => {
+      const card = document.createElement("article");
+      card.className = "booking";
+
+      const head = document.createElement("div");
+      head.className = "booking-head";
+
+      const title = document.createElement("h3");
+      title.textContent = "Meeting Room " + booking.room_number;
+
+      const time = document.createElement("div");
+      time.className = "time";
+      time.textContent =
+        formatTime(booking.start_time) + " – " +
+        formatTime(booking.end_time);
+
+      head.append(title, time);
+
+      const details = document.createElement("div");
+      details.className = "details";
+      details.textContent = "Adviser: " + booking.adviser_name;
+
+      const purpose = document.createElement("span");
+      purpose.className = "pill";
+      purpose.textContent = booking.meeting_purpose;
+
+      card.append(head, details, purpose);
+      bookingList.appendChild(card);
+    });
+  }
+
+  async function loadBookings() {
+    showMessage(scheduleStatus, "Loading shared bookings…");
+
+    const selectedDate = scheduleDate.value || localDateString();
+
+    const { data, error } = await db
+      .from("room_bookings")
+      .select("id, room_number, booking_date, start_time, end_time, adviser_name, meeting_purpose")
+      .eq("booking_date", selectedDate)
+      .order("start_time", { ascending: true });
+
+    if (error) {
+      showMessage(
+        scheduleStatus,
+        "Could not load bookings. Please check the database setup and refresh.",
+        "error"
+      );
+      bookingList.replaceChildren();
+      return;
+    }
+
+    showMessage(
+      scheduleStatus,
+      "Shared schedule updated · " + data.length + " booking(s)"
+    );
+    displayBookings(data);
+  }
+
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+    showFormMessage("");
+
+    const adviser = document.getElementById("adviser").value.trim();
+    const room = Number(document.getElementById("room").value);
+    const date = dateInput.value;
+    const start = document.getElementById("start").value;
+    const end = document.getElementById("end").value;
+    const purpose = document.getElementById("purpose").value;
+
+    if (!adviser) {
+      showFormMessage("Please enter your name.", "error");
+      return;
+    }
+
+    if (date < localDateString()) {
+      showFormMessage("Please select today or a future date.", "error");
+      return;
+    }
+
+    if (!start || !end || end <= start) {
+      showFormMessage("The end time must be later than the start time.", "error");
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Checking availability…";
+
+    try {
+      const { data: existing, error: checkError } = await db
+        .from("room_bookings")
+        .select("id")
+        .eq("room_number", room)
+        .eq("booking_date", date)
+        .lt("start_time", end)
+        .gt("end_time", start);
+
+      if (checkError) throw checkError;
+
+      if (existing && existing.length > 0) {
+        showFormMessage(
+          "This room is already booked for some or all of that time. Please choose another time or room.",
+          "error"
+        );
+        return;
+      }
+
+      submitButton.textContent = "Saving booking…";
+
+      const { error: insertError } = await db
+        .from("room_bookings")
+        .insert([{
+          room_number: room,
+          booking_date: date,
+          start_time: start,
+          end_time: end,
+          adviser_name: adviser,
+          meeting_purpose: purpose
+        }]);
+
+      if (insertError) {
+        if (
+          insertError.code === "23P01" ||
+          insertError.message.toLowerCase().includes("no_overlapping")
+        ) {
+          showFormMessage(
+            "Another adviser has just booked that room for this time. Please choose another slot.",
+            "error"
+          );
+          await loadBookings();
+          return;
+        }
+        throw insertError;
+      }
+
+      showFormMessage("Booking saved and shared with the team.", "success");
+      scheduleDate.value = date;
+      form.reset();
+      dateInput.value = date;
+      await loadBookings();
+
+    } catch (error) {
+      console.error("Booking error:", error);
+      showFormMessage(
+        "The booking could not be saved. Please refresh and try again. If the problem continues, check the Supabase table permissions.",
+        "error"
+      );
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Confirm booking";
+    }
+  });
+
+  scheduleDate.addEventListener("change", loadBookings);
+  document.getElementById("refreshButton")
+    .addEventListener("click", loadBookings);
+
+  loadBookings();
+  setInterval(loadBookings, 15000);
+</script>
+</body>
+</html>
