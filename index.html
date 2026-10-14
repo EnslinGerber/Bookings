@@ -17,7 +17,7 @@
 <button class="primary" type="submit">Confirm booking</button><div id="message" class="message" role="status"></div>
 </form></section>
 <section class="card"><h2><span aria-hidden="true">▦</span> Daily schedule</h2><label for="filterDate">Select date</label><input id="filterDate" type="date"><label for="filterRoom">Filter by room</label><select id="filterRoom"><option>All rooms</option><option>Meeting Room 1</option><option>Meeting Room 2</option><option>Meeting Room 3</option><option>Meeting Room 4</option><option>Meeting Room 5</option></select><div id="schedule"></div><button class="secondary" id="export" style="width:100%;margin-top:12px">Export bookings as CSV</button></section></div>
-<p class="note"><b>Shared booking system:</b> Bookings are stored in the shared database and refresh automatically. Please do not enter confidential client details. To cancel or change a booking, contact your office administrator.</p>
+<p class="note"><b>Shared booking system:</b> Bookings are stored in the shared database and refresh automatically. Please do not enter confidential client details. Anyone with this link can cancel any booking, so please check carefully before confirming a cancellation.</p>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -40,7 +40,7 @@ function render(bookings) {
   rooms.forEach((r,i)=>$("count"+i).textContent=bookings.filter(b=>b.room_number===i+1).length);
   const roomFilter=$('filterRoom').value;
   const list=bookings.filter(b=>roomFilter==='All rooms'||b.room_number===Number(roomFilter.replace('Meeting Room ',''))).sort((a,b)=>a.start_time.localeCompare(b.start_time));
-  $('schedule').innerHTML=list.length ? list.map(b=>`<article class="booking"><div class="time">${esc(String(b.start_time).slice(0,5))}–${esc(String(b.end_time).slice(0,5))}</div><div style="flex:1;min-width:0"><h3>${esc(b.meeting_purpose)}</h3><p>${esc('Meeting Room '+b.room_number)}</p><p>Advisor: ${esc(b.adviser_name)}</p></div></article>`).join('') : '<div class="empty">No bookings for this date and filter.</div>';
+  $('schedule').innerHTML=list.length ? list.map(b=>`<article class="booking"><div class="time">${esc(String(b.start_time).slice(0,5))}–${esc(String(b.end_time).slice(0,5))}</div><div style="flex:1;min-width:0"><h3>${esc(b.meeting_purpose)}</h3><p>${esc('Meeting Room '+b.room_number)}</p><p>Advisor: ${esc(b.adviser_name)}</p></div><button type="button" class="danger cancel-booking" data-booking-id="${esc(b.id)}">Cancel</button></article>`).join('') : '<div class="empty">No bookings for this date and filter.</div>';
 }
 async function loadBookings() {
   showScheduleStatus('Loading shared bookings…');
@@ -66,6 +66,17 @@ $('bookingForm').addEventListener('submit', async e=>{
     $('filterDate').value=date; $('advisor').value=''; msg('Booking saved and shared with the team.'); await loadBookings();
   } catch(err) { console.error(err); msg('The booking could not be saved. Please refresh and try again.',true); }
   finally { btn.disabled=false; btn.textContent='Confirm booking'; }
+});
+$('schedule').addEventListener('click', async e=>{
+  const btn=e.target.closest('.cancel-booking');
+  if(!btn) return;
+  const id=btn.dataset.bookingId;
+  if(!id || !confirm('Cancel this booking? This cannot be undone.')) return;
+  btn.disabled=true; btn.textContent='Cancelling…';
+  const {error}=await db.from('room_bookings').delete().eq('id',id);
+  if(error){ console.error(error); showScheduleStatus('Could not cancel this booking. Please refresh and try again.',true); btn.disabled=false; btn.textContent='Cancel'; return; }
+  showScheduleStatus('Booking cancelled.');
+  await loadBookings();
 });
 $('filterDate').addEventListener('change',loadBookings); $('filterRoom').addEventListener('change',loadBookings);
 $('export').addEventListener('click',async()=>{
