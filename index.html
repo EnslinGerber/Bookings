@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +22,23 @@
   --surface: #fff;
   --soft: #f4f8fc;
 }
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: radial-gradient(ellipse at top left,#e5eef9 0,transparent 42%),#f4f7fb;
   min-height: 100vh;
 }
-.wrap { max-width: 1500px; margin: auto; padding: 34px 28px 28px; }
+
+.wrap {
+  max-width: 1500px;
+  margin: auto;
+  padding: 34px 28px 28px;
+}
+
 .hero {
   position: relative;
   overflow: hidden;
@@ -41,6 +50,7 @@ body {
   border: 1px solid #ffffff25;
   box-shadow: 0 18px 42px #102b431a;
 }
+
 .hero:after {
   content: "";
   position: absolute;
@@ -53,6 +63,7 @@ body {
   box-shadow: 0 0 0 35px #ffffff08,0 0 0 70px #ffffff05;
   pointer-events: none;
 }
+
 .brand-lockup {
   display: flex;
   align-items: center;
@@ -61,7 +72,13 @@ body {
   position: relative;
   z-index: 1;
 }
-.brand-name { font-size: 24px; font-weight: 850; letter-spacing: 2px; }
+
+.brand-name {
+  font-size: 24px;
+  font-weight: 850;
+  letter-spacing: 2px;
+}
+
 .brand-tagline {
   font-size: 10px;
   font-weight: 750;
@@ -70,6 +87,7 @@ body {
   border-left: 1px solid #ffffff50;
   padding-left: 13px;
 }
+
 .gold-rule {
   height: 2px;
   background: linear-gradient(90deg,var(--gold),#e3bd5900);
@@ -78,6 +96,7 @@ body {
   position: relative;
   z-index: 1;
 }
+
 .hero h1 {
   font-size: clamp(25px,3vw,34px);
   letter-spacing: -.8px;
@@ -86,8 +105,18 @@ body {
   position: relative;
   z-index: 1;
 }
-.muted { color: #718096; }
-.hero .muted { color: #d5e2ec; font-size: 14px; position: relative; z-index: 1; }
+
+.muted {
+  color: #718096;
+}
+
+.hero .muted {
+  color: #d5e2ec;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(135px,1fr));
@@ -96,6 +125,7 @@ body {
   position: relative;
   z-index: 1;
 }
+
 .stat {
   background: #ffffff12;
   border: 1px solid #ffffff25;
@@ -106,6 +136,7 @@ body {
   letter-spacing: .2px;
   backdrop-filter: blur(4px);
 }
+
 .stat b {
   display: block;
   font-size: 28px;
@@ -114,12 +145,14 @@ body {
   color: #e7cc80;
   font-weight: 750;
 }
+
 .grid {
   display: grid;
   grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr);
   gap: 22px;
   align-items: start;
 }
+
 .card {
   background: var(--surface);
   border: 1px solid #dfe7f0;
@@ -129,6 +162,7 @@ body {
   margin-bottom: 22px;
   min-width: 0;
 }
+
 .card h2 {
   margin: 0 0 20px;
   font-size: 18px;
@@ -138,7 +172,11 @@ body {
   align-items: center;
   gap: 10px;
 }
-.card h2:first-letter { color: var(--teal); }
+
+.card h2:first-letter {
+  color: var(--teal);
+}
+
 label {
   display: block;
   font-size: 12px;
@@ -147,7 +185,9 @@ label {
   margin: 16px 0 7px;
   color: #334c6b;
 }
-input, select {
+
+input,
+select {
   width: 100%;
   padding: 12px 13px;
   border: 1px solid #d6e0e8;
@@ -158,13 +198,23 @@ input, select {
   color: #172b3b;
   transition: border-color .18s,box-shadow .18s;
 }
-input:hover,select:hover { border-color: #a9bdca; }
-input:focus,select:focus {
+
+input:hover,
+select:hover {
+  border-color: #a9bdca;
+}
+
+input:focus,
+select:focus {
   outline: none;
   border-color: var(--teal);
   box-shadow: 0 0 0 3px #1769aa20;
 }
-input::placeholder { color: #9aa8b5; }
+
+input::placeholder {
+  color: #9aa8b5;
+}
+
 button {
   border: 0;
   border-radius: 10px;
@@ -175,8 +225,16 @@ button {
   cursor: pointer;
   transition: transform .15s,background .15s,box-shadow .15s;
 }
-button:active { transform: translateY(1px); }
-button:disabled { opacity: .6; cursor: wait; }
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
 .primary {
   background: linear-gradient(100deg,#123b72,#1769aa);
   color: white;
@@ -185,14 +243,34 @@ button:disabled { opacity: .6; cursor: wait; }
   padding: 14px;
   box-shadow: 0 6px 15px #123b7224;
 }
+
 .primary:hover {
   background: linear-gradient(100deg,#0b2c59,#12559a);
   box-shadow: 0 8px 18px #123b7230;
 }
-.secondary { background: #edf3fa; color: #123b72; border: 1px solid #dce5ef; }
-.secondary:hover { background: #e0ebf7; }
-.danger { background: #fff1f0; color: #a62d2d; padding: 8px 11px; border: 1px solid #ffe0dd; font-size: 12px; }
-.danger:hover { background: #ffe4e1; }
+
+.secondary {
+  background: #edf3fa;
+  color: #123b72;
+  border: 1px solid #dce5ef;
+}
+
+.secondary:hover {
+  background: #e0ebf7;
+}
+
+.danger {
+  background: #fff1f0;
+  color: #a62d2d;
+  padding: 8px 11px;
+  border: 1px solid #ffe0dd;
+  font-size: 12px;
+}
+
+.danger:hover {
+  background: #ffe4e1;
+}
+
 .message {
   margin-top: 14px;
   padding: 12px 14px;
@@ -204,8 +282,19 @@ button:disabled { opacity: .6; cursor: wait; }
   border: 1px solid #d8e6f8;
   display: none;
 }
-.message.error { background: #fff1f0; color: #a12424; border-color: #ffd9d5; }
-.message.success { background: #edf9f1; color: #17663d; border-color: #ccebd7; }
+
+.message.error {
+  background: #fff1f0;
+  color: #a12424;
+  border-color: #ffd9d5;
+}
+
+.message.success {
+  background: #edf9f1;
+  color: #17663d;
+  border-color: #ccebd7;
+}
+
 .booking {
   border: 1px solid #e4ebf0;
   border-radius: 13px;
@@ -218,7 +307,12 @@ button:disabled { opacity: .6; cursor: wait; }
   background: #fff;
   transition: border-color .15s,box-shadow .15s;
 }
-.booking:hover { border-color: #b8cde4; box-shadow: 0 4px 14px #102b4308; }
+
+.booking:hover {
+  border-color: #b8cde4;
+  box-shadow: 0 4px 14px #102b4308;
+}
+
 .time {
   font-weight: 800;
   min-width: 100px;
@@ -229,8 +323,19 @@ button:disabled { opacity: .6; cursor: wait; }
   border-radius: 9px;
   text-align: center;
 }
-.booking h3 { font-size: 14px; margin: 0 0 6px; color: #17375f; }
-.booking p { font-size: 12px; margin: 4px 0; color: #718096; }
+
+.booking h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: #17375f;
+}
+
+.booking p {
+  font-size: 12px;
+  margin: 4px 0;
+  color: #718096;
+}
+
 .empty {
   padding: 32px 20px;
   text-align: center;
@@ -240,6 +345,7 @@ button:disabled { opacity: .6; cursor: wait; }
   border-radius: 13px;
   font-size: 13px;
 }
+
 .note {
   font-size: 12px;
   color: #7b8996;
@@ -250,7 +356,11 @@ button:disabled { opacity: .6; cursor: wait; }
   background: #ffffffa8;
   border-radius: 0 9px 9px 0;
 }
-.note b { color: #465b6b; }
+
+.note b {
+  color: #465b6b;
+}
+
 .calendar-toolbar {
   display: flex;
   justify-content: space-between;
@@ -259,8 +369,19 @@ button:disabled { opacity: .6; cursor: wait; }
   flex-wrap: wrap;
   margin-bottom: 16px;
 }
-.calendar-nav { display: flex; gap: 8px; flex-wrap: wrap; }
-.calendar-week-label { font-size: 14px; font-weight: 750; color: #17375f; }
+
+.calendar-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.calendar-week-label {
+  font-size: 14px;
+  font-weight: 750;
+  color: #17375f;
+}
+
 .calendar-scroll {
   overflow: auto;
   border: 1px solid #dfe7f0;
@@ -268,90 +389,264 @@ button:disabled { opacity: .6; cursor: wait; }
   max-height: 760px;
   background: white;
 }
+
 .calendar {
   display: grid;
   grid-template-columns: 72px repeat(7,minmax(140px,1fr));
   min-width: 1080px;
+  min-height: 62px;
 }
-.cal-cell { border-right: 1px solid #e6edf3; border-bottom: 1px solid #e6edf3; min-width: 0; }
-.cal-corner,.cal-day-head {
+
+.cal-corner,
+.cal-day-head {
   background: #f2f6fb;
   position: sticky;
   top: 0;
-  z-index: 4;
+  z-index: 10;
   min-height: 62px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 4px;
+  border-right: 1px solid #e6edf3;
+  border-bottom: 1px solid #e6edf3;
 }
-.cal-corner { left: 0; z-index: 6; font-size: 12px; font-weight: 800; color: #17375f; }
-.cal-day-head strong { font-size: 12px; color: #17375f; }
-.cal-day-head span { font-size: 11px; color: #718096; }
-.cal-day-head.today { background: #e7f1fc; }
-.cal-time {
+
+.cal-corner {
+  left: 0;
+  z-index: 12;
+  font-size: 12px;
+  font-weight: 800;
+  color: #17375f;
+}
+
+.cal-day-head strong {
+  font-size: 12px;
+  color: #17375f;
+}
+
+.cal-day-head span {
+  font-size: 11px;
+  color: #718096;
+}
+
+.cal-day-head.today {
+  background: #e7f1fc;
+}
+
+.cal-time-column {
   position: sticky;
   left: 0;
-  z-index: 2;
+  z-index: 8;
   background: #f8fafc;
-  min-height: 42px;
-  text-align: center;
-  padding: 10px 3px 3px;
+  border-right: 1px solid #dce5ef;
+}
+
+.cal-time {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 7px 3px 0;
   color: #718096;
   font-size: 11px;
   font-weight: 750;
+  border-bottom: 1px solid #e6edf3;
 }
-.cal-slot { min-height: 42px; padding: 3px; background: #fff; }
-.cal-slot.today { background: #fbfdff; }
-.cal-slot.past { background: #f8f9fb; }
+
+.cal-day-column {
+  position: relative;
+  height: 2016px;
+  border-right: 1px solid #e6edf3;
+  background-color: #fff;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 41px,
+    #e6edf3 41px,
+    #e6edf3 42px
+  );
+}
+
+.cal-day-column.today {
+  background-color: #fbfdff;
+}
+
+.cal-day-column.past {
+  background-color: #f8f9fb;
+}
+
 .cal-booking {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 6px 5px;
-  border-radius: 6px;
-  margin: 0 0 3px;
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  min-height: 24px;
+  padding: 7px 6px;
+  border-radius: 7px;
   font-size: 10px;
-  line-height: 1.4;
+  line-height: 1.35;
   font-weight: 500;
+  overflow: hidden;
   overflow-wrap: anywhere;
   white-space: normal;
   cursor: default;
+  z-index: 3;
+  box-shadow: 0 1px 3px rgba(16,43,67,.08);
 }
-.cal-booking strong { display: block; font-size: 10px; margin-bottom: 3px; }
-.cal-booking small { display: block; font-size: 10px; opacity: .85; margin-top: 2px; }
-.room-1 { background: #e4effa; color: #17375f; border-left: 3px solid #245b87; }
-.room-2 { background: #e6f5ee; color: #165c3b; border-left: 3px solid #188653; }
-.room-3 { background: #f2eafb; color: #573779; border-left: 3px solid #8154ae; }
-.room-4 { background: #fff0dd; color: #754710; border-left: 3px solid #c77a19; }
-.room-5 { background: #fde8ed; color: #8d2944; border-left: 3px solid #c34264; }
-.legend { display: flex; gap: 12px 16px; flex-wrap: wrap; margin-top: 15px; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #687b92; }
-.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
-.room-filter-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.schedule-status { font-size: 12px; color: #718096; margin: 12px 0 0; }
+
+.cal-booking strong {
+  display: block;
+  font-size: 10px;
+  margin-bottom: 3px;
+}
+
+.cal-booking small {
+  display: block;
+  font-size: 10px;
+  opacity: .85;
+  margin-top: 2px;
+}
+
+.room-1 {
+  background: #e4effa;
+  color: #17375f;
+  border-left: 3px solid #245b87;
+}
+
+.room-2 {
+  background: #e6f5ee;
+  color: #165c3b;
+  border-left: 3px solid #188653;
+}
+
+.room-3 {
+  background: #f2eafb;
+  color: #573779;
+  border-left: 3px solid #8154ae;
+}
+
+.room-4 {
+  background: #fff0dd;
+  color: #754710;
+  border-left: 3px solid #c77a19;
+}
+
+.room-5 {
+  background: #fde8ed;
+  color: #8d2944;
+  border-left: 3px solid #c34264;
+}
+
+.legend {
+  display: flex;
+  gap: 12px 16px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #687b92;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+
+.room-filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.schedule-status {
+  font-size: 12px;
+  color: #718096;
+  margin: 12px 0 0;
+}
 
 @media(max-width:800px) {
-  .grid { grid-template-columns: 1fr; }
-  .wrap { padding: 20px 16px; }
-  .hero { padding: 24px 22px; }
-  .card { padding: 21px; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wrap {
+    padding: 20px 16px;
+  }
+
+  .hero {
+    padding: 24px 22px;
+  }
+
+  .card {
+    padding: 21px;
+  }
 }
+
 @media(max-width:520px) {
-  .brand-lockup { align-items: flex-start; flex-direction: column; gap: 7px; }
-  .brand-tagline { border-left: 0; padding-left: 0; }
-  .hero h1 { font-size: 24px; }
-  .stats { gap: 7px; }
-  .stat { padding: 12px 10px; font-size: 10px; }
-  .stat b { font-size: 23px; }
-  .booking { align-items: flex-start; flex-wrap: wrap; }
-  .time { min-width: 82px; }
-  .danger { margin-left: auto; }
-  .card h2 { font-size: 17px; }
-  .calendar-toolbar { align-items: flex-start; }
-  .calendar-nav button { padding: 9px 10px; }
-  .room-filter-row { grid-template-columns: 1fr; }
+  .brand-lockup {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .brand-tagline {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .stats {
+    gap: 7px;
+  }
+
+  .stat {
+    padding: 12px 10px;
+    font-size: 10px;
+  }
+
+  .stat b {
+    font-size: 23px;
+  }
+
+  .booking {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .time {
+    min-width: 82px;
+  }
+
+  .danger {
+    margin-left: auto;
+  }
+
+  .card h2 {
+    font-size: 17px;
+  }
+
+  .calendar-toolbar {
+    align-items: flex-start;
+  }
+
+  .calendar-nav button {
+    padding: 9px 10px;
+  }
+
+  .room-filter-row {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -364,73 +659,68 @@ button:disabled { opacity: .6; cursor: wait; }
     <div class="brand-name">EQ-FIN</div>
     <div class="brand-tagline">AFFILIATE OF LIBERTY</div>
   </div>
+
   <div class="gold-rule"></div>
+
   <h1>Meeting Room Bookings</h1>
-  <div class="muted">Advisor office <span aria-hidden="true">·</span> Five meeting rooms</div>
+
+  <div class="muted">
+    Advisor office <span aria-hidden="true">·</span> Five meeting rooms
+  </div>
 
   <div class="stats">
-    <div class="stat">The Compass (Room 1)<b id="count0">0</b> bookings</div>
-    <div class="stat">The Horizon (Room 2)<b id="count1">0</b> bookings</div>
-    <div class="stat">The Legacy (Room 3)<b id="count2">0</b> bookings</div>
-    <div class="stat">The Blueprint (Boardroom)<b id="count3">0</b> bookings</div>
-    <div class="stat">The Locker Room (Training Room)<b id="count4">0</b> bookings</div>
+    <div class="stat">
+      The Compass (Room 1)
+      <b id="count0">0</b> bookings
+    </div>
+
+    <div class="stat">
+      The Horizon (Room 2)
+      <b id="count1">0</b> bookings
+    </div>
+
+    <div class="stat">
+      The Legacy (Room 3)
+      <b id="count2">0</b> bookings
+    </div>
+
+    <div class="stat">
+      The Blueprint (Boardroom)
+      <b id="count3">0</b> bookings
+    </div>
+
+    <div class="stat">
+      The Locker Room (Training Room)
+      <b id="count4">0</b> bookings
+    </div>
   </div>
 </header>
 
 <!-- TOP SECTION: BOOKING FORM AND DAILY SCHEDULE -->
 <div class="grid">
 
-  <section class="card">
-    <h2><span aria-hidden="true">✦</span> Make a booking</h2>
-    <form id="bookingForm">
+<section class="card">
+  <h2>
+    <span aria-hidden="true">✦</span>
+    Make a booking
+  </h2>
 
-      <label for="advisor">Advisor name</label>
-      <input id="advisor" required maxlength="100" placeholder="Enter advisor name">
+  <form id="bookingForm">
 
-      <label for="date">Meeting date</label>
-      <input id="date" type="date" required>
+    <label for="advisor">Advisor name</label>
+    <input
+      id="advisor"
+      required
+      maxlength="100"
+      placeholder="Enter advisor name"
+    >
 
-      <label for="room">Meeting room</label>
-      <select id="room" required>
-        <option value="Meeting Room 1">The Compass (Room 1)</option>
-        <option value="Meeting Room 2">The Horizon (Room 2)</option>
-        <option value="Meeting Room 3">The Legacy (Room 3)</option>
-        <option value="Meeting Room 4">The Blueprint (Boardroom)</option>
-        <option value="Meeting Room 5">The Locker Room (Training Room)</option>
-      </select>
+    <label for="date">Meeting date</label>
+    <input id="date" type="date" required>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div>
-          <label for="start">Start time</label>
-          <select id="start" required></select>
-        </div>
-        <div>
-          <label for="end">End time</label>
-          <select id="end" required></select>
-        </div>
-      </div>
+    <label for="room">Meeting room</label>
 
-      <label for="purpose">Meeting purpose</label>
-      <select id="purpose">
-        <option>Client meeting</option>
-        <option>Staff meeting</option>
-        <option>Other</option>
-      </select>
-
-      <button class="primary" type="submit">Confirm booking</button>
-      <div id="message" class="message" role="status" aria-live="polite"></div>
-    </form>
-  </section>
-
-  <section class="card">
-    <h2><span aria-hidden="true">▦</span> Daily schedule</h2>
-
-    <label for="filterDate">Select date</label>
-    <input id="filterDate" type="date">
-
-    <label for="filterRoom">Filter by room</label>
-    <select id="filterRoom">
-      <option value="All rooms">All rooms</option>
+    <select id="room" required>
       <option value="Meeting Room 1">The Compass (Room 1)</option>
       <option value="Meeting Room 2">The Horizon (Room 2)</option>
       <option value="Meeting Room 3">The Legacy (Room 3)</option>
@@ -438,29 +728,132 @@ button:disabled { opacity: .6; cursor: wait; }
       <option value="Meeting Room 5">The Locker Room (Training Room)</option>
     </select>
 
-    <div id="schedule"></div>
-    <div id="scheduleStatus" class="schedule-status" aria-live="polite"></div>
-    <button class="secondary" id="export" style="width:100%;margin-top:12px" type="button">Export bookings as CSV</button>
-  </section>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+      <div>
+        <label for="start">Start time</label>
+        <select id="start" required></select>
+      </div>
+
+      <div>
+        <label for="end">End time</label>
+        <select id="end" required></select>
+      </div>
+
+    </div>
+
+    <label for="purpose">Meeting purpose</label>
+
+    <select id="purpose">
+      <option>Client meeting</option>
+      <option>Staff meeting</option>
+      <option>Other</option>
+    </select>
+
+    <button class="primary" type="submit">
+      Confirm booking
+    </button>
+
+    <div
+      id="message"
+      class="message"
+      role="status"
+      aria-live="polite">
+    </div>
+
+  </form>
+</section>
+
+
+<section class="card">
+
+  <h2>
+    <span aria-hidden="true">▦</span>
+    Daily schedule
+  </h2>
+
+  <label for="filterDate">Select date</label>
+  <input id="filterDate" type="date">
+
+  <label for="filterRoom">Filter by room</label>
+
+  <select id="filterRoom">
+    <option value="All rooms">All rooms</option>
+    <option value="Meeting Room 1">The Compass (Room 1)</option>
+    <option value="Meeting Room 2">The Horizon (Room 2)</option>
+    <option value="Meeting Room 3">The Legacy (Room 3)</option>
+    <option value="Meeting Room 4">The Blueprint (Boardroom)</option>
+    <option value="Meeting Room 5">The Locker Room (Training Room)</option>
+  </select>
+
+  <div id="schedule"></div>
+
+  <div
+    id="scheduleStatus"
+    class="schedule-status"
+    aria-live="polite">
+  </div>
+
+  <button
+    class="secondary"
+    id="export"
+    style="width:100%;margin-top:12px"
+    type="button">
+    Export bookings as CSV
+  </button>
+
+</section>
 
 </div>
 
+
 <!-- FULL-DAY WEEKLY CALENDAR BELOW THE TOP SECTIONS -->
 <section class="card">
-  <h2><span aria-hidden="true">▦</span> Weekly room calendar</h2>
+
+  <h2>
+    <span aria-hidden="true">▦</span>
+    Weekly room calendar
+  </h2>
 
   <div class="calendar-toolbar">
+
     <div>
-      <div id="weekLabel" class="calendar-week-label">Loading week...</div>
-      <div class="muted" style="font-size:12px;margin-top:5px">
-        Full-day view from 00:00 to 24:00. Each row represents a 30-minute interval.
+      <div id="weekLabel" class="calendar-week-label">
+        Loading week...
+      </div>
+
+      <div
+        class="muted"
+        style="font-size:12px;margin-top:5px">
+        Full-day view from 00:00 to 24:00. Bookings stretch from their start time to their end time.
       </div>
     </div>
+
     <div class="calendar-nav">
-      <button class="secondary" id="prevWeek" type="button">← Previous</button>
-      <button class="secondary" id="thisWeek" type="button">This week</button>
-      <button class="secondary" id="nextWeek" type="button">Next →</button>
+
+      <button
+        class="secondary"
+        id="prevWeek"
+        type="button">
+        ← Previous
+      </button>
+
+      <button
+        class="secondary"
+        id="thisWeek"
+        type="button">
+        This week
+      </button>
+
+      <button
+        class="secondary"
+        id="nextWeek"
+        type="button">
+        Next →
+      </button>
+
     </div>
+
   </div>
 
   <div class="calendar-scroll">
@@ -468,35 +861,94 @@ button:disabled { opacity: .6; cursor: wait; }
   </div>
 
   <div class="legend">
-    <div class="legend-item"><span class="legend-dot" style="background:#245b87"></span>The Compass (Room 1)</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#188653"></span>The Horizon (Room 2)</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#8154ae"></span>The Legacy (Room 3)</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#c77a19"></span>The Blueprint (Boardroom)</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#c34264"></span>The Locker Room (Training Room)</div>
+
+    <div class="legend-item">
+      <span
+        class="legend-dot"
+        style="background:#245b87">
+      </span>
+      The Compass (Room 1)
+    </div>
+
+    <div class="legend-item">
+      <span
+        class="legend-dot"
+        style="background:#188653">
+      </span>
+      The Horizon (Room 2)
+    </div>
+
+    <div class="legend-item">
+      <span
+        class="legend-dot"
+        style="background:#8154ae">
+      </span>
+      The Legacy (Room 3)
+    </div>
+
+    <div class="legend-item">
+      <span
+        class="legend-dot"
+        style="background:#c77a19">
+      </span>
+      The Blueprint (Boardroom)
+    </div>
+
+    <div class="legend-item">
+      <span
+        class="legend-dot"
+        style="background:#c34264">
+      </span>
+      The Locker Room (Training Room)
+    </div>
+
   </div>
-  <div id="calendarStatus" class="schedule-status" aria-live="polite">Loading shared bookings...</div>
+
+  <div
+    id="calendarStatus"
+    class="schedule-status"
+    aria-live="polite">
+    Loading shared bookings...
+  </div>
+
 </section>
 
+
 <p class="note">
-  <b>Shared booking system:</b> Bookings are stored in the shared database and refresh automatically.
-  Please do not enter confidential client details. Anyone with this link can cancel any booking,
+
+  <b>Shared booking system:</b>
+  Bookings are stored in the shared database and refresh automatically.
+
+  Please do not enter confidential client details.
+
+  Anyone with this link can cancel any booking,
   so please check carefully before confirming a cancellation.
+
 </p>
 
 </main>
 
+
 <script>
+
 const $ = id => document.getElementById(id);
 
-const SUPABASE_URL = "https://gwkwoduktxmhnpdajnbv.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_V3vV1ZDB6LHwV0SHVXUVKQ_03dqnBBJ";
+
+const SUPABASE_URL =
+  "https://gwkwoduktxmhnpdajnbv.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_V3vV1ZDB6LHwV0SHVXUVKQ_03dqnBBJ";
+
 
 const db = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
 
-// Friendly display names. Database room numbers remain unchanged.
+
+// Friendly display names.
+// Database room numbers remain unchanged.
 const rooms = [
   "The Compass (Room 1)",
   "The Horizon (Room 2)",
@@ -505,7 +957,15 @@ const rooms = [
   "The Locker Room (Training Room)"
 ];
 
-const ROOM_COLOURS = ["room-1","room-2","room-3","room-4","room-5"];
+
+const ROOM_COLOURS = [
+  "room-1",
+  "room-2",
+  "room-3",
+  "room-4",
+  "room-5"
+];
+
 
 // Calendar and bookings cover the full 24-hour day.
 const DAY_START = 0;
@@ -513,435 +973,1286 @@ const DAY_END = 24 * 60;
 const INTERVAL = 30;
 const REFRESH_MS = 15000;
 
+
 const localDate = (date = new Date()) => {
-  const d = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+
+  const d = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate()
+  );
+
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 };
 
+
 const parseDate = value => {
+
   const [y,m,d] = value.split('-').map(Number);
+
   return new Date(y,m-1,d);
 };
 
+
 const addDays = (date,amount) => {
+
   const result = new Date(date);
+
   result.setDate(result.getDate()+amount);
+
   return result;
 };
+
 
 const getMonday = date => {
-  const result = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+
+  const result = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate()
+  );
+
   const day = result.getDay();
-  result.setDate(result.getDate()+(day===0?-6:1-day));
+
+  result.setDate(
+    result.getDate()+(day===0 ? -6 : 1-day)
+  );
+
   return result;
 };
 
-const fmtDate = value => parseDate(value).toLocaleDateString('en-ZA',{
-  day:'numeric',month:'short',year:'numeric'
-});
 
-const fmtTime = value => String(value || '').slice(0,5);
+const fmtDate = value =>
+  parseDate(value).toLocaleDateString(
+    'en-ZA',
+    {
+      day:'numeric',
+      month:'short',
+      year:'numeric'
+    }
+  );
+
+
+const fmtTime = value =>
+  String(value || '').slice(0,5);
+
 
 const toMinutes = value => {
-  const [h,m] = fmtTime(value).split(':').map(Number);
+
+  const [h,m] =
+    fmtTime(value).split(':').map(Number);
+
   return h*60+m;
 };
 
+
 const fromMinutes = value => {
+
   const h = Math.floor(value/60);
   const m = value%60;
+
   return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
 };
 
+
 function esc(s) {
-  return String(s ?? '').replace(/[&<>"']/g,c => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-  }[c]));
+
+  return String(s ?? '').replace(
+    /[&<>"']/g,
+    c => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#39;'
+    }[c])
+  );
+
 }
+
 
 function roomNumber(value) {
-  const match = String(value || '').match(/(\d+)/);
-  return match ? Number(match[1]) : Number(value);
+
+  const match =
+    String(value || '').match(/(\d+)/);
+
+  return match
+    ? Number(match[1])
+    : Number(value);
 }
 
+
 function roomName(value) {
+
   const n = roomNumber(value);
+
   return rooms[n-1] || ('Room '+value);
 }
 
+
 function msg(text,error=false,success=false) {
+
   $('message').textContent = text;
+
   $('message').style.display = 'block';
-  $('message').className = 'message'+(error?' error':'')+(success?' success':'');
+
+  $('message').className =
+    'message' +
+    (error ? ' error' : '') +
+    (success ? ' success' : '');
+
 }
+
 
 function showScheduleStatus(text,error=false) {
+
   $('scheduleStatus').textContent = text;
-  $('scheduleStatus').style.color = error ? '#a12424' : '';
+
+  $('scheduleStatus').style.color =
+    error ? '#a12424' : '';
+
 }
 
+
 let allBookings = [];
+
 let displayedBookings = [];
+
 let weekStart = getMonday(new Date());
+
 let loading = false;
 
+
 function populateTimeOptions() {
+
   const start = $('start');
+
   const end = $('end');
 
   start.innerHTML = '';
+
   end.innerHTML = '';
 
+
   // Start times: 00:00 through 23:30.
-  // End times: 00:00 through 23:30, plus the 24:00 day boundary.
-  for (let mins = DAY_START; mins < DAY_END; mins += INTERVAL) {
+  // End times: 00:00 through 23:30, plus 24:00.
+
+  for (
+    let mins = DAY_START;
+    mins < DAY_END;
+    mins += INTERVAL
+  ) {
+
     const time = fromMinutes(mins);
+
     start.add(new Option(time,time));
+
     end.add(new Option(time,time));
+
   }
+
 
   end.add(new Option('24:00','24:00'));
 
+
   start.value = '09:00';
+
   end.value = '10:00';
+
 }
+
 
 function renderStats() {
+
   rooms.forEach((name,index) => {
-    const count = allBookings.filter(
-      b => roomNumber(b.room_number) === index+1
-    ).length;
+
+    const count =
+      allBookings.filter(
+        b =>
+          roomNumber(b.room_number) === index+1
+      ).length;
+
     $('count'+index).textContent = count;
+
   });
+
 }
 
+
+/*
+===========================================================
+WEEKLY CALENDAR
+===========================================================
+
+Each day is now one tall calendar column.
+
+30 minutes = 42px.
+
+Therefore:
+
+09:00 = 756px from the top
+10:00 = 840px from the top
+
+A 09:00–10:00 booking therefore gets a height
+of 84px and visually fills the complete hour.
+
+The same calculation works for any duration.
+===========================================================
+*/
+
 function renderCalendar() {
+
   const calendar = $('calendar');
+
   calendar.innerHTML = '';
 
-  const days = Array.from({length:7},(_,i)=>addDays(weekStart,i));
-  const first = localDate(days[0]);
-  const last = localDate(days[6]);
-  const today = localDate();
 
-  $('weekLabel').textContent = `${fmtDate(first)} – ${fmtDate(last)}`;
+  const days =
+    Array.from(
+      {length:7},
+      (_,i) => addDays(weekStart,i)
+    );
 
-  const corner = document.createElement('div');
-  corner.className = 'cal-cell cal-corner';
-  corner.textContent = 'Time';
+
+  const first =
+    localDate(days[0]);
+
+  const last =
+    localDate(days[6]);
+
+  const today =
+    localDate();
+
+
+  $('weekLabel').textContent =
+    `${fmtDate(first)} – ${fmtDate(last)}`;
+
+
+  /*
+  -----------------------------------------------------------
+  HEADER
+  -----------------------------------------------------------
+  */
+
+  const corner =
+    document.createElement('div');
+
+  corner.className =
+    'cal-corner';
+
+  corner.textContent =
+    'Time';
+
   calendar.appendChild(corner);
 
+
   days.forEach(day => {
-    const dateString = localDate(day);
-    const head = document.createElement('div');
-    head.className = 'cal-cell cal-day-head'+(dateString===today?' today':'');
+
+    const dateString =
+      localDate(day);
+
+    const head =
+      document.createElement('div');
+
+    head.className =
+      'cal-day-head' +
+      (dateString===today ? ' today' : '');
+
+
     head.innerHTML = `
-      <strong>${esc(day.toLocaleDateString('en-ZA',{weekday:'short'}))}</strong>
-      <span>${esc(day.toLocaleDateString('en-ZA',{day:'numeric',month:'short'}))}</span>
+      <strong>
+        ${esc(
+          day.toLocaleDateString(
+            'en-ZA',
+            {weekday:'short'}
+          )
+        )}
+      </strong>
+
+      <span>
+        ${esc(
+          day.toLocaleDateString(
+            'en-ZA',
+            {
+              day:'numeric',
+              month:'short'
+            }
+          )
+        )}
+      </span>
     `;
+
+
     calendar.appendChild(head);
+
   });
 
-  const bookingsInWeek = allBookings.filter(
-    b => b.booking_date >= first && b.booking_date <= last
-  );
 
-  // 48 half-hour slots, from 00:00 to 23:30.
-  for (let minutes = DAY_START; minutes < DAY_END; minutes += INTERVAL) {
-    const time = fromMinutes(minutes);
+  /*
+  -----------------------------------------------------------
+  GET BOOKINGS FOR THIS WEEK
+  -----------------------------------------------------------
+  */
 
-    const timeCell = document.createElement('div');
-    timeCell.className = 'cal-cell cal-time';
-    timeCell.textContent = time;
-    calendar.appendChild(timeCell);
+  const bookingsInWeek =
+    allBookings.filter(
+      b =>
+        b.booking_date >= first &&
+        b.booking_date <= last
+    );
 
-    days.forEach(day => {
-      const dateString = localDate(day);
-      const slot = document.createElement('div');
-      slot.className = 'cal-cell cal-slot';
 
-      if (dateString===today) slot.classList.add('today');
-      if (dateString<today) slot.classList.add('past');
+  /*
+  -----------------------------------------------------------
+  TIME COLUMN
+  -----------------------------------------------------------
+  */
 
-      // A booking appears in the row matching its start time.
-      const bookings = bookingsInWeek.filter(b =>
-        b.booking_date===dateString &&
-        toMinutes(b.start_time)===minutes
-      );
+  const timeColumn =
+    document.createElement('div');
 
-      bookings.forEach(b => {
-        const n = roomNumber(b.room_number);
-        const chip = document.createElement('div');
-        chip.className = `cal-booking ${ROOM_COLOURS[n-1] || ''}`;
+  timeColumn.className =
+    'cal-time-column';
 
-        const purpose = b.meeting_purpose || '';
-        chip.innerHTML = `
-          <strong>${esc(fmtTime(b.start_time))}–${esc(fmtTime(b.end_time))}</strong>
-          ${esc(roomName(n))}
-          <small>${esc(b.adviser_name || 'Advisor not specified')}</small>
-          ${purpose ? `<small>${esc(purpose)}</small>` : ''}
-        `;
 
-        chip.title = `${roomName(n)} | ${fmtTime(b.start_time)}–${fmtTime(b.end_time)} | ${b.adviser_name || ''}`;
-        slot.appendChild(chip);
-      });
+  for (
+    let minutes = DAY_START;
+    minutes < DAY_END;
+    minutes += INTERVAL
+  ) {
 
-      calendar.appendChild(slot);
-    });
+    const time =
+      document.createElement('div');
+
+    time.className =
+      'cal-time';
+
+    time.textContent =
+      fromMinutes(minutes);
+
+    timeColumn.appendChild(time);
+
   }
 
-  // Explicit end-of-day marker for the 24:00 boundary.
-  const endLabel = document.createElement('div');
-  endLabel.className = 'cal-cell cal-time';
-  endLabel.textContent = '24:00';
-  calendar.appendChild(endLabel);
 
-  days.forEach(() => {
-    const endCell = document.createElement('div');
-    endCell.className = 'cal-cell cal-slot';
-    endCell.style.minHeight = '24px';
-    endCell.style.background = '#f8fafc';
-    calendar.appendChild(endCell);
+  calendar.appendChild(timeColumn);
+
+
+  /*
+  -----------------------------------------------------------
+  DAILY COLUMNS
+  -----------------------------------------------------------
+  */
+
+  days.forEach(day => {
+
+    const dateString =
+      localDate(day);
+
+
+    const dayColumn =
+      document.createElement('div');
+
+
+    dayColumn.className =
+      'cal-day-column' +
+      (dateString===today ? ' today' : '') +
+      (dateString<today ? ' past' : '');
+
+
+    /*
+    Get bookings for this particular day.
+    */
+
+    const dayBookings =
+      bookingsInWeek
+        .filter(
+          b =>
+            b.booking_date === dateString
+        )
+        .sort(
+          (a,b) =>
+            toMinutes(a.start_time) -
+            toMinutes(b.start_time)
+        );
+
+
+    /*
+    -----------------------------------------------------------
+    CREATE EACH BOOKING BLOCK
+    -----------------------------------------------------------
+
+    IMPORTANT:
+
+    The booking is NOT inserted into a 30-minute row anymore.
+
+    Instead:
+
+    top = start time
+    height = duration
+
+    This is what makes the booking stretch visually.
+    -----------------------------------------------------------
+    */
+
+    dayBookings.forEach(b => {
+
+      const n =
+        roomNumber(b.room_number);
+
+
+      const startMinutes =
+        Math.max(
+          DAY_START,
+          toMinutes(b.start_time)
+        );
+
+
+      const endMinutes =
+        Math.min(
+          DAY_END,
+          toMinutes(b.end_time)
+        );
+
+
+      if (endMinutes <= startMinutes) {
+        return;
+      }
+
+
+      const chip =
+        document.createElement('div');
+
+
+      chip.className =
+        `cal-booking ${ROOM_COLOURS[n-1] || ''}`;
+
+
+      /*
+      42px = one 30-minute interval.
+
+      Example:
+
+      09:00
+      9 hours x 60 = 540 minutes
+      540 / 30 = 18 intervals
+      18 x 42px = 756px from top
+
+      09:00–10:00:
+      60 / 30 = 2 intervals
+      2 x 42px = 84px high
+      */
+
+      chip.style.top =
+        `${(startMinutes / INTERVAL) * 42 + 3}px`;
+
+
+      chip.style.height =
+        `${((endMinutes - startMinutes) / INTERVAL) * 42 - 6}px`;
+
+
+      const purpose =
+        b.meeting_purpose || '';
+
+
+      chip.innerHTML = `
+
+        <strong>
+          ${esc(fmtTime(b.start_time))}–${esc(fmtTime(b.end_time))}
+        </strong>
+
+        ${esc(roomName(n))}
+
+        <small>
+          ${esc(
+            b.adviser_name ||
+            'Advisor not specified'
+          )}
+        </small>
+
+        ${
+          purpose
+            ? `<small>${esc(purpose)}</small>`
+            : ''
+        }
+
+      `;
+
+
+      chip.title =
+        `${roomName(n)} | ` +
+        `${fmtTime(b.start_time)}–${fmtTime(b.end_time)} | ` +
+        `${b.adviser_name || ''}`;
+
+
+      dayColumn.appendChild(chip);
+
+    });
+
+
+    calendar.appendChild(dayColumn);
+
   });
+
 
   $('calendarStatus').textContent =
     `${bookingsInWeek.length} booking(s) this week. Calendar refreshes automatically.`;
+
 }
+
 
 function renderDailySchedule() {
-  const date = $('filterDate').value || localDate();
-  const filter = $('filterRoom').value;
 
-  const list = allBookings
-    .filter(b => b.booking_date===date)
-    .filter(b => filter==='All rooms' || roomNumber(b.room_number)===roomNumber(filter))
-    .sort((a,b) => fmtTime(a.start_time).localeCompare(fmtTime(b.start_time)));
+  const date =
+    $('filterDate').value ||
+    localDate();
 
-  displayedBookings = list;
 
-  $('schedule').innerHTML = list.length
-    ? list.map(b => `
-      <article class="booking">
-        <div class="time">${esc(fmtTime(b.start_time))}–${esc(fmtTime(b.end_time))}</div>
-        <div style="flex:1;min-width:0">
-          <h3>${esc(b.meeting_purpose || 'Meeting')}</h3>
-          <p>${esc(roomName(b.room_number))}</p>
-          <p>Advisor: ${esc(b.adviser_name || '—')}</p>
-        </div>
-        <button type="button" class="danger cancel-booking" data-booking-id="${esc(b.id)}">Cancel</button>
-      </article>
-    `).join('')
-    : '<div class="empty">No bookings for this date and filter.</div>';
+  const filter =
+    $('filterRoom').value;
 
-  showScheduleStatus(`${list.length} booking(s) on ${fmtDate(date)}.`);
+
+  const list =
+    allBookings
+      .filter(
+        b =>
+          b.booking_date === date
+      )
+      .filter(
+        b =>
+          filter === 'All rooms' ||
+          roomNumber(b.room_number) ===
+          roomNumber(filter)
+      )
+      .sort(
+        (a,b) =>
+          fmtTime(a.start_time)
+            .localeCompare(
+              fmtTime(b.start_time)
+            )
+      );
+
+
+  displayedBookings =
+    list;
+
+
+  $('schedule').innerHTML =
+    list.length
+
+      ? list.map(b => `
+
+        <article class="booking">
+
+          <div class="time">
+            ${esc(fmtTime(b.start_time))}–
+            ${esc(fmtTime(b.end_time))}
+          </div>
+
+          <div style="flex:1;min-width:0">
+
+            <h3>
+              ${esc(
+                b.meeting_purpose ||
+                'Meeting'
+              )}
+            </h3>
+
+            <p>
+              ${esc(
+                roomName(b.room_number)
+              )}
+            </p>
+
+            <p>
+              Advisor:
+              ${esc(
+                b.adviser_name || '—'
+              )}
+            </p>
+
+          </div>
+
+          <button
+            type="button"
+            class="danger cancel-booking"
+            data-booking-id="${esc(b.id)}">
+            Cancel
+          </button>
+
+        </article>
+
+      `).join('')
+
+      : '<div class="empty">No bookings for this date and filter.</div>';
+
+
+  showScheduleStatus(
+    `${list.length} booking(s) on ${fmtDate(date)}.`
+  );
+
 }
+
 
 async function loadBookings() {
-  if (loading) return;
+
+  if (loading) {
+    return;
+  }
+
+
   loading = true;
 
+
   try {
-    const {data,error} = await db
+
+    const {
+      data,
+      error
+    } = await db
+
       .from('room_bookings')
-      .select('id,room_number,booking_date,start_time,end_time,adviser_name,meeting_purpose')
-      .order('booking_date',{ascending:true})
-      .order('start_time',{ascending:true});
 
-    if (error) throw error;
+      .select(
+        'id,room_number,booking_date,start_time,end_time,adviser_name,meeting_purpose'
+      )
 
-    allBookings = data || [];
+      .order(
+        'booking_date',
+        {ascending:true}
+      )
+
+      .order(
+        'start_time',
+        {ascending:true}
+      );
+
+
+    if (error) {
+      throw error;
+    }
+
+
+    allBookings =
+      data || [];
+
+
     renderStats();
+
     renderCalendar();
+
     renderDailySchedule();
+
+
   } catch (error) {
-    console.error('Could not load bookings:',error);
-    $('calendarStatus').textContent = 'Could not load bookings. Please refresh and try again.';
-    showScheduleStatus('Unable to load shared bookings. Check the Supabase connection and permissions.',true);
+
+    console.error(
+      'Could not load bookings:',
+      error
+    );
+
+
+    $('calendarStatus').textContent =
+      'Could not load bookings. Please refresh and try again.';
+
+
+    showScheduleStatus(
+      'Unable to load shared bookings. Check the Supabase connection and permissions.',
+      true
+    );
+
+
   } finally {
+
     loading = false;
+
   }
+
 }
 
-$('bookingForm').addEventListener('submit',async e => {
-  e.preventDefault();
 
-  const adviser = $('advisor').value.trim();
-  const date = $('date').value;
-  const room = roomNumber($('room').value);
-  const start = $('start').value;
-  const end = $('end').value;
-  const purpose = $('purpose').value;
+/*
+===========================================================
+BOOKING FORM
+===========================================================
+*/
 
-  if (!adviser) {
-    msg('Please enter your name.',true);
-    return;
+$('bookingForm').addEventListener(
+  'submit',
+  async e => {
+
+    e.preventDefault();
+
+
+    const adviser =
+      $('advisor').value.trim();
+
+    const date =
+      $('date').value;
+
+    const room =
+      roomNumber(
+        $('room').value
+      );
+
+    const start =
+      $('start').value;
+
+    const end =
+      $('end').value;
+
+    const purpose =
+      $('purpose').value;
+
+
+    if (!adviser) {
+
+      msg(
+        'Please enter your name.',
+        true
+      );
+
+      return;
+
+    }
+
+
+    if (date < localDate()) {
+
+      msg(
+        'Please select today or a future date.',
+        true
+      );
+
+      return;
+
+    }
+
+
+    if (
+      !start ||
+      !end ||
+      toMinutes(end) <=
+      toMinutes(start)
+    ) {
+
+      msg(
+        'End time must be later than start time.',
+        true
+      );
+
+      return;
+
+    }
+
+
+    if (
+      toMinutes(start) % 30 !== 0 ||
+      toMinutes(end) % 30 !== 0
+    ) {
+
+      msg(
+        'Please select start and end times in 30-minute intervals.',
+        true
+      );
+
+      return;
+
+    }
+
+
+    if (
+      toMinutes(start) < DAY_START ||
+      toMinutes(start) >= DAY_END ||
+      toMinutes(end) > DAY_END
+    ) {
+
+      msg(
+        'Bookings must be between 00:00 and 24:00.',
+        true
+      );
+
+      return;
+
+    }
+
+
+    const btn =
+      $('bookingForm')
+        .querySelector(
+          'button[type="submit"]'
+        );
+
+
+    btn.disabled = true;
+
+    btn.textContent =
+      'Checking availability…';
+
+
+    try {
+
+      /*
+      Check for overlapping bookings
+      in the selected room.
+      */
+
+      const {
+        data: existing,
+        error: checkError
+      } = await db
+
+        .from('room_bookings')
+
+        .select(
+          'id,start_time,end_time'
+        )
+
+        .eq(
+          'room_number',
+          room
+        )
+
+        .eq(
+          'booking_date',
+          date
+        )
+
+        .lt(
+          'start_time',
+          end
+        )
+
+        .gt(
+          'end_time',
+          start
+        );
+
+
+      if (checkError) {
+        throw checkError;
+      }
+
+
+      if (
+        existing &&
+        existing.length
+      ) {
+
+        msg(
+          `This room is already booked from ${fmtTime(existing[0].start_time)} to ${fmtTime(existing[0].end_time)}. Please choose another time.`,
+          true
+        );
+
+        return;
+
+      }
+
+
+      btn.textContent =
+        'Saving booking…';
+
+
+      const {
+        error: insertError
+      } = await db
+
+        .from('room_bookings')
+
+        .insert([
+          {
+            room_number: room,
+            booking_date: date,
+            start_time: start,
+            end_time: end,
+            adviser_name: adviser,
+            meeting_purpose: purpose
+          }
+        ]);
+
+
+      if (insertError) {
+
+        if (
+          insertError.code === '23P01' ||
+          /overlap|no_overlapping/i.test(
+            insertError.message || ''
+          )
+        ) {
+
+          msg(
+            'Another adviser has just booked that room for this time. Please choose another slot.',
+            true
+          );
+
+          await loadBookings();
+
+          return;
+
+        }
+
+
+        throw insertError;
+
+      }
+
+
+      $('filterDate').value =
+        date;
+
+
+      weekStart =
+        getMonday(
+          parseDate(date)
+        );
+
+
+      msg(
+        'Booking saved and shared with the team.',
+        false,
+        true
+      );
+
+
+      await loadBookings();
+
+
+      $('advisor').value = '';
+
+
+    } catch (err) {
+
+      console.error(err);
+
+
+      msg(
+        'The booking could not be saved. Please refresh and try again.',
+        true
+      );
+
+
+    } finally {
+
+      btn.disabled = false;
+
+      btn.textContent =
+        'Confirm booking';
+
+    }
+
   }
+);
 
-  if (date<localDate()) {
-    msg('Please select today or a future date.',true);
-    return;
-  }
 
-  if (!start || !end || toMinutes(end)<=toMinutes(start)) {
-    msg('End time must be later than start time.',true);
-    return;
-  }
+/*
+===========================================================
+CANCEL BOOKING
+===========================================================
+*/
 
-  if (toMinutes(start)%30!==0 || toMinutes(end)%30!==0) {
-    msg('Please select start and end times in 30-minute intervals.',true);
-    return;
-  }
+$('schedule').addEventListener(
+  'click',
+  async e => {
 
-  if (toMinutes(start)<DAY_START || toMinutes(start)>=DAY_END || toMinutes(end)>DAY_END) {
-    msg('Bookings must be between 00:00 and 24:00.',true);
-    return;
-  }
+    const btn =
+      e.target.closest(
+        '.cancel-booking'
+      );
 
-  const btn = $('bookingForm').querySelector('button[type="submit"]');
-  btn.disabled = true;
-  btn.textContent = 'Checking availability…';
 
-  try {
-    // Check for overlapping bookings in the selected room.
-    const {data:existing,error:checkError} = await db
-      .from('room_bookings')
-      .select('id,start_time,end_time')
-      .eq('room_number',room)
-      .eq('booking_date',date)
-      .lt('start_time',end)
-      .gt('end_time',start);
-
-    if (checkError) throw checkError;
-
-    if (existing && existing.length) {
-      msg(`This room is already booked from ${fmtTime(existing[0].start_time)} to ${fmtTime(existing[0].end_time)}. Please choose another time.`,true);
+    if (!btn) {
       return;
     }
 
-    btn.textContent = 'Saving booking…';
 
-    const {error:insertError} = await db
-      .from('room_bookings')
-      .insert([{
-        room_number: room,
-        booking_date: date,
-        start_time: start,
-        end_time: end,
-        adviser_name: adviser,
-        meeting_purpose: purpose
-      }]);
+    const id =
+      btn.dataset.bookingId;
 
-    if (insertError) {
-      if (insertError.code==='23P01' || /overlap|no_overlapping/i.test(insertError.message || '')) {
-        msg('Another adviser has just booked that room for this time. Please choose another slot.',true);
-        await loadBookings();
-        return;
-      }
-      throw insertError;
+
+    if (
+      !id ||
+      !confirm(
+        'Cancel this booking? This cannot be undone.'
+      )
+    ) {
+      return;
     }
 
-    $('filterDate').value = date;
-    weekStart = getMonday(parseDate(date));
-    msg('Booking saved and shared with the team.',false,true);
+
+    btn.disabled = true;
+
+    btn.textContent =
+      'Cancelling…';
+
+
+    const {
+      error
+    } = await db
+
+      .from('room_bookings')
+
+      .delete()
+
+      .eq(
+        'id',
+        id
+      );
+
+
+    if (error) {
+
+      console.error(error);
+
+
+      showScheduleStatus(
+        'Could not cancel this booking. Please refresh and try again.',
+        true
+      );
+
+
+      btn.disabled = false;
+
+      btn.textContent =
+        'Cancel';
+
+      return;
+
+    }
+
+
+    showScheduleStatus(
+      'Booking cancelled.'
+    );
+
+
     await loadBookings();
-    $('advisor').value = '';
-  } catch (err) {
-    console.error(err);
-    msg('The booking could not be saved. Please refresh and try again.',true);
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Confirm booking';
+
   }
-});
+);
 
-$('schedule').addEventListener('click',async e => {
-  const btn = e.target.closest('.cancel-booking');
-  if (!btn) return;
 
-  const id = btn.dataset.bookingId;
-  if (!id || !confirm('Cancel this booking? This cannot be undone.')) return;
+/*
+===========================================================
+FILTERS
+===========================================================
+*/
 
-  btn.disabled = true;
-  btn.textContent = 'Cancelling…';
+$('filterDate').addEventListener(
+  'change',
+  renderDailySchedule
+);
 
-  const {error} = await db.from('room_bookings').delete().eq('id',id);
 
-  if (error) {
-    console.error(error);
-    showScheduleStatus('Could not cancel this booking. Please refresh and try again.',true);
-    btn.disabled = false;
-    btn.textContent = 'Cancel';
-    return;
+$('filterRoom').addEventListener(
+  'change',
+  renderDailySchedule
+);
+
+
+/*
+===========================================================
+WEEK NAVIGATION
+===========================================================
+*/
+
+$('prevWeek').addEventListener(
+  'click',
+  () => {
+
+    weekStart =
+      addDays(
+        weekStart,
+        -7
+      );
+
+    renderCalendar();
+
   }
+);
 
-  showScheduleStatus('Booking cancelled.');
-  await loadBookings();
-});
 
-$('filterDate').addEventListener('change',renderDailySchedule);
-$('filterRoom').addEventListener('change',renderDailySchedule);
+$('nextWeek').addEventListener(
+  'click',
+  () => {
 
-$('prevWeek').addEventListener('click',() => {
-  weekStart = addDays(weekStart,-7);
-  renderCalendar();
-});
+    weekStart =
+      addDays(
+        weekStart,
+        7
+      );
 
-$('nextWeek').addEventListener('click',() => {
-  weekStart = addDays(weekStart,7);
-  renderCalendar();
-});
+    renderCalendar();
 
-$('thisWeek').addEventListener('click',() => {
-  weekStart = getMonday(new Date());
-  renderCalendar();
-});
-
-$('export').addEventListener('click',async () => {
-  const {data,error} = await db
-    .from('room_bookings')
-    .select('booking_date,room_number,start_time,end_time,adviser_name,meeting_purpose')
-    .order('booking_date',{ascending:true})
-    .order('start_time',{ascending:true});
-
-  if (error) {
-    msg('Could not export bookings. Please try again.',true);
-    return;
   }
+);
 
-  const rows = [
-    ['Date','Room','Start','End','Advisor','Purpose'],
-    ...(data || []).map(b => [
-      b.booking_date,
-      roomName(b.room_number),
-      fmtTime(b.start_time),
-      fmtTime(b.end_time),
-      b.adviser_name,
-      b.meeting_purpose
-    ])
-  ];
 
-  const csv = rows
-    .map(row => row.map(v => '"' + String(v ?? '').replace(/"/g,'""') + '"').join(','))
-    .join('\r\n');
+$('thisWeek').addEventListener(
+  'click',
+  () => {
 
-  const url = URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'}));
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'EQ-FIN-meeting-room-bookings.csv';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-});
+    weekStart =
+      getMonday(
+        new Date()
+      );
+
+    renderCalendar();
+
+  }
+);
+
+
+/*
+===========================================================
+CSV EXPORT
+===========================================================
+*/
+
+$('export').addEventListener(
+  'click',
+  async () => {
+
+    const {
+      data,
+      error
+    } = await db
+
+      .from('room_bookings')
+
+      .select(
+        'booking_date,room_number,start_time,end_time,adviser_name,meeting_purpose'
+      )
+
+      .order(
+        'booking_date',
+        {ascending:true}
+      )
+
+      .order(
+        'start_time',
+        {ascending:true}
+      );
+
+
+    if (error) {
+
+      msg(
+        'Could not export bookings. Please try again.',
+        true
+      );
+
+      return;
+
+    }
+
+
+    const rows = [
+
+      [
+        'Date',
+        'Room',
+        'Start',
+        'End',
+        'Advisor',
+        'Purpose'
+      ],
+
+      ...(data || []).map(
+        b => [
+          b.booking_date,
+          roomName(b.room_number),
+          fmtTime(b.start_time),
+          fmtTime(b.end_time),
+          b.adviser_name,
+          b.meeting_purpose
+        ]
+      )
+
+    ];
+
+
+    const csv =
+      rows
+
+        .map(
+          row =>
+            row
+              .map(
+                v =>
+                  '"' +
+                  String(v ?? '')
+                    .replace(/"/g,'""') +
+                  '"'
+              )
+              .join(',')
+        )
+
+        .join('\r\n');
+
+
+    const url =
+      URL.createObjectURL(
+        new Blob(
+          ['\uFEFF' + csv],
+          {
+            type:
+              'text/csv;charset=utf-8;'
+          }
+        )
+      );
+
+
+    const a =
+      document.createElement('a');
+
+
+    a.href = url;
+
+    a.download =
+      'EQ-FIN-meeting-room-bookings.csv';
+
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+  }
+);
+
+
+/*
+===========================================================
+INITIALISE
+===========================================================
+*/
 
 populateTimeOptions();
 
-$('date').min = localDate();
-$('date').value = localDate();
-$('filterDate').value = localDate();
+
+$('date').min =
+  localDate();
+
+$('date').value =
+  localDate();
+
+
+$('filterDate').value =
+  localDate();
+
 
 loadBookings();
-setInterval(loadBookings,REFRESH_MS);
+
+
+setInterval(
+  loadBookings,
+  REFRESH_MS
+);
+
 </script>
+
 </body>
 </html>
