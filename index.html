@@ -153,70 +153,268 @@ button:disabled { opacity: .6; cursor: wait; }
 }
 </style>
 </head>
+<body>
+<main class="wrap">
+<header class="hero">
+  <div class="brand-lockup">
+    <div class="brand-name">EQ-FIN</div>
+    <div class="brand-tagline">AFFILIATE OF LIBERTY</div>
+  </div>
+  <div class="gold-rule"></div>
+  <h1>Meeting Room Bookings</h1>
+  <div class="muted">Advisor office <span aria-hidden="true">·</span> Five meeting rooms</div>
+  <div class="stats">
+    <div class="stat">The Compass (Room 1)<b id="count0">0</b> bookings</div>
+    <div class="stat">The Horizon (Room 2)<b id="count1">0</b> bookings</div>
+    <div class="stat">The Legacy (Room 3)<b id="count2">0</b> bookings</div>
+    <div class="stat">The Blueprint (Boardroom)<b id="count3">0</b> bookings</div>
+    <div class="stat">The Locker Room (Training Room)<b id="count4">0</b> bookings</div>
+  </div>
+</header>
+
+<div class="grid">
+<section class="card">
+  <h2><span aria-hidden="true">✦</span> Make a booking</h2>
+  <form id="bookingForm">
+    <label for="advisor">Advisor name</label>
+    <input id="advisor" required maxlength="100" placeholder="Enter advisor name">
+    <label for="date">Meeting date</label>
+    <input id="date" type="date" required>
+    <label for="room">Meeting room</label>
+    <select id="room" required>
+      <option value="Meeting Room 1">The Compass (Room 1)</option>
+      <option value="Meeting Room 2">The Horizon (Room 2)</option>
+      <option value="Meeting Room 3">The Legacy (Room 3)</option>
+      <option value="Meeting Room 4">The Blueprint (Boardroom)</option>
+      <option value="Meeting Room 5">The Locker Room (Training Room)</option>
+    </select>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div><label for="start">Start time</label><select id="start" required></select></div>
+      <div><label for="end">End time</label><select id="end" required></select></div>
+    </div>
+    <label for="purpose">Meeting purpose</label>
+    <select id="purpose"><option>Client meeting</option><option>Staff meeting</option><option>Other</option></select>
+    <button class="primary" type="submit">Confirm booking</button>
+    <div id="message" class="message" role="status" aria-live="polite"></div>
+  </form>
+</section>
+
+<section class="card">
+  <h2><span aria-hidden="true">▦</span> Daily schedule</h2>
+  <label for="filterDate">Select date</label>
+  <input id="filterDate" type="date">
+  <label for="filterRoom">Filter by room</label>
+  <select id="filterRoom">
+    <option value="All rooms">All rooms</option>
+    <option value="Meeting Room 1">The Compass (Room 1)</option>
+    <option value="Meeting Room 2">The Horizon (Room 2)</option>
+    <option value="Meeting Room 3">The Legacy (Room 3)</option>
+    <option value="Meeting Room 4">The Blueprint (Boardroom)</option>
+    <option value="Meeting Room 5">The Locker Room (Training Room)</option>
+  </select>
+  <div id="schedule"></div>
+  <div id="scheduleStatus" class="schedule-status" aria-live="polite"></div>
+  <button class="secondary" id="export" style="width:100%;margin-top:12px" type="button">Export bookings as CSV</button>
+</section>
+</div>
+
+<section class="card">
+  <h2><span aria-hidden="true">▦</span> Weekly room calendar</h2>
+  <div class="calendar-toolbar">
+    <div>
+      <div id="weekLabel" class="calendar-week-label">Loading week...</div>
+      <div class="muted" style="font-size:12px;margin-top:5px">Full-day view from 00:00 to 24:00. Bookings stretch from their start time to their end time.</div>
+    </div>
+    <div class="calendar-nav">
+      <button class="secondary" id="prevWeek" type="button">← Previous</button>
+      <button class="secondary" id="thisWeek" type="button">This week</button>
+      <button class="secondary" id="nextWeek" type="button">Next →</button>
+    </div>
+  </div>
+
+  <div class="calendar-controls">
+    <div>
+      <label for="calendarRoomFilter">Calendar room view</label>
+      <select id="calendarRoomFilter">
+        <option value="All rooms">All rooms</option>
+        <option value="Meeting Room 1">The Compass (Room 1)</option>
+        <option value="Meeting Room 2">The Horizon (Room 2)</option>
+        <option value="Meeting Room 3">The Legacy (Room 3)</option>
+        <option value="Meeting Room 4">The Blueprint (Boardroom)</option>
+        <option value="Meeting Room 5">The Locker Room (Training Room)</option>
+      </select>
+      <div class="control-hint">Choose All rooms or focus on one room.</div>
+    </div>
+    <div>
+      <div class="calendar-week-label">Calendar display</div>
+      <div class="control-hint">Overlapping bookings are arranged side by side. Choose one room for a wider, more detailed view.</div>
+    </div>
+  </div>
+
+  <div class="calendar-scroll"><div id="calendar" class="calendar"></div></div>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#245b87"></span>The Compass (Room 1)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#188653"></span>The Horizon (Room 2)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#8154ae"></span>The Legacy (Room 3)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#c77a19"></span>The Blueprint (Boardroom)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#c34264"></span>The Locker Room (Training Room)</div>
+  </div>
+  <div id="calendarStatus" class="schedule-status" aria-live="polite">Loading shared bookings...</div>
+</section>
+
+<p class="note"><b>Shared booking system:</b> Bookings are stored in the shared database and refresh automatically. Please do not enter confidential client details. Anyone with this link can cancel any booking, so please check carefully before confirming a cancellation.</p>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const SUPABASE_URL = "https://gwkwoduktxmhnpdajnbv.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_V3vV1ZDB6LHwV0SHVXUVKQ_03dqnBBJ";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+const rooms = [
+  "The Compass (Room 1)",
+  "The Horizon (Room 2)",
+  "The Legacy (Room 3)",
+  "The Blueprint (Boardroom)",
+  "The Locker Room (Training Room)"
+];
+const ROOM_COLOURS = ["room-1","room-2","room-3","room-4","room-5"];
+const DAY_START = 0;
+const DAY_END = 24 * 60;
+const INTERVAL = 30;
+const SLOT_HEIGHT = 42;
+const REFRESH_MS = 15000;
+
+const localDate = (date = new Date()) => {
+  const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+};
+const parseDate = value => {
+  const [y,m,d] = value.split('-').map(Number);
+  return new Date(y,m-1,d);
+};
+const addDays = (date,amount) => {
+  const result = new Date(date);
+  result.setDate(result.getDate()+amount);
+  return result;
+};
+const getMonday = date => {
+  const result = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+  const day = result.getDay();
+  result.setDate(result.getDate()+(day===0 ? -6 : 1-day));
+  return result;
+};
+const fmtDate = value => parseDate(value).toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'});
+const fmtTime = value => String(value || '').slice(0,5);
+const toMinutes = value => {
+  const [h,m] = fmtTime(value).split(':').map(Number);
+  return h*60+m;
+};
+const fromMinutes = value => {
+  const h = Math.floor(value/60), m = value%60;
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+};
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function roomNumber(value) {
+  const match = String(value || '').match(/(\d+)/);
+  return match ? Number(match[1]) : Number(value);
+}
+function roomName(value) {
+  const n = roomNumber(value);
+  return rooms[n-1] || ('Room '+value);
+}
+function msg(text,error=false,success=false) {
+  $('message').textContent = text;
+  $('message').style.display = 'block';
+  $('message').className = 'message' + (error ? ' error' : '') + (success ? ' success' : '');
+}
+function showScheduleStatus(text,error=false) {
+  $('scheduleStatus').textContent = text;
+  $('scheduleStatus').style.color = error ? '#a12424' : '';
+}
+
+let allBookings = [];
+let displayedBookings = [];
+let weekStart = getMonday(new Date());
+let loading = false;
+
+function populateTimeOptions() {
+  const start = $('start'), end = $('end');
+  start.innerHTML = '';
+  end.innerHTML = '';
+  for (let mins=DAY_START; mins<DAY_END; mins+=INTERVAL) {
+    const time = fromMinutes(mins);
+    start.add(new Option(time,time));
+    end.add(new Option(time,time));
+  }
+  end.add(new Option('24:00','24:00'));
+  start.value = '09:00';
+  end.value = '10:00';
+}
+function renderStats() {
+  rooms.forEach((name,index) => {
+    const count = allBookings.filter(b=>roomNumber(b.room_number)===index+1).length;
+    $('count'+index).textContent = count;
+  });
+}
+
+/*
+ * Lay out overlapping bookings in lanes. Each booking receives a lane
+ * within its overlap group, with a calculated left offset and width.
+ * Bookings that do not overlap can reuse the same lane.
+ */
 function layoutOverlappingBookings(bookings) {
-  // Assign overlapping bookings to separate horizontal lanes.
-  // Each booking retains its own start and end positions.
-  const sorted = bookings.map(booking => ({
+  const items = bookings.map((booking,index) => ({
     booking,
-    start: Math.max(DAY_START, toMinutes(booking.start_time)),
-    end: Math.min(DAY_END, toMinutes(booking.end_time))
-  }))
-  .filter(item => item.end > item.start)
-  .sort((a,b) => a.start-b.start || b.end-a.end);
+    index,
+    start: Math.max(DAY_START,toMinutes(booking.start_time)),
+    end: Math.min(DAY_END,toMinutes(booking.end_time)),
+    lane: 0,
+    laneCount: 1
+  })).filter(item=>item.end>item.start)
+    .sort((a,b)=>a.start-b.start || b.end-a.end);
 
-  const result = [];
-  let cluster = [];
-  let clusterEnd = -1;
+  let group = [];
+  let groupEnd = -1;
 
-  function finishCluster() {
-    if (!cluster.length) return;
-
+  function assignGroup() {
+    if (!group.length) return;
     const laneEnds = [];
-
-    cluster.forEach(item => {
-      let lane = laneEnds.findIndex(end => end <= item.start);
-
-      if (lane === -1) {
+    group.forEach(item => {
+      let lane = laneEnds.findIndex(end=>end<=item.start);
+      if (lane===-1) {
         lane = laneEnds.length;
         laneEnds.push(item.end);
       } else {
         laneEnds[lane] = item.end;
       }
-
       item.lane = lane;
     });
-
-    const laneCount = laneEnds.length;
-
-    cluster.forEach(item => {
-      item.laneCount = laneCount;
-      result.push(item);
-    });
-
-    cluster = [];
-    clusterEnd = -1;
+    const laneCount = Math.max(1,laneEnds.length);
+    group.forEach(item=>item.laneCount=laneCount);
+    group = [];
+    groupEnd = -1;
   }
 
-  sorted.forEach(item => {
-    if (cluster.length && item.start >= clusterEnd) {
-      finishCluster();
-    }
-
-    cluster.push(item);
-    clusterEnd = Math.max(clusterEnd,item.end);
+  items.forEach(item => {
+    if (group.length && item.start >= groupEnd) assignGroup();
+    group.push(item);
+    groupEnd = Math.max(groupEnd,item.end);
   });
-
-  finishCluster();
-
-  return result;
+  assignGroup();
+  return items;
 }
 
 function renderCalendar() {
   const calendar = $('calendar');
-  const filter = $('calendarRoomFilter').value;
-
   calendar.innerHTML = '';
 
+  const filter = $('calendarRoomFilter').value;
+  const filteredRooms = filter === 'All rooms'
+    ? [1,2,3,4,5]
+    : [roomNumber(filter)];
   const days = Array.from({length:7},(_,i)=>addDays(weekStart,i));
   const first = localDate(days[0]);
   const last = localDate(days[6]);
@@ -241,38 +439,24 @@ function renderCalendar() {
     calendar.appendChild(head);
   });
 
-  const bookingsInWeek = allBookings.filter(
-    b => b.booking_date>=first && b.booking_date<=last
-  );
-
-  const filteredRooms = filter==='All rooms'
-    ? [1,2,3,4,5]
-    : [roomNumber(filter)];
-
+  const bookingsInWeek = allBookings.filter(b=>b.booking_date>=first && b.booking_date<=last);
   const timeColumn = document.createElement('div');
   timeColumn.className = 'cal-time-column';
-
   for (let minutes=DAY_START;minutes<DAY_END;minutes+=INTERVAL) {
     const time = document.createElement('div');
     time.className = 'cal-time';
     time.textContent = fromMinutes(minutes);
     timeColumn.appendChild(time);
   }
-
   calendar.appendChild(timeColumn);
 
   days.forEach(day => {
     const dateString = localDate(day);
     const dayColumn = document.createElement('div');
-
-    dayColumn.className = 'cal-day-column' +
-      (dateString===today?' today':'') +
-      (dateString<today?' past':'');
-
+    dayColumn.className = 'cal-day-column' + (dateString===today?' today':'') + (dateString<today?' past':'');
     const dayBookings = bookingsInWeek
       .filter(b=>b.booking_date===dateString)
       .filter(b=>filteredRooms.includes(roomNumber(b.room_number)));
-
     const laidOut = layoutOverlappingBookings(dayBookings);
 
     laidOut.forEach(item => {
@@ -280,59 +464,43 @@ function renderCalendar() {
       const n = roomNumber(b.room_number);
       const startMinutes = item.start;
       const endMinutes = item.end;
-
       const chip = document.createElement('div');
       chip.className = `cal-booking ${ROOM_COLOURS[n-1]||''}`;
 
-      // Place simultaneous bookings side by side.
+      // Leave a small gap between lanes so adjacent bookings are distinguishable.
       const laneGap = 3;
       const widthPercent = 100 / item.laneCount;
-
       chip.style.left = `calc(${item.lane*widthPercent}% + ${laneGap}px)`;
       chip.style.width = `calc(${widthPercent}% - ${laneGap*2}px)`;
       chip.style.right = 'auto';
-
-      // 30 minutes = 42px, so booking height matches its duration.
       chip.style.top = `${(startMinutes/INTERVAL)*SLOT_HEIGHT+3}px`;
       chip.style.height = `${Math.max(22,((endMinutes-startMinutes)/INTERVAL)*SLOT_HEIGHT-6)}px`;
 
       const purpose = b.meeting_purpose || '';
-      const roomLine = filter==='All rooms'
-        ? `<small>${esc(roomName(n))}</small>`
-        : '';
-
+      const roomLine = filter==='All rooms' ? `<small>${esc(roomName(n))}</small>` : '';
       chip.innerHTML = `
         <strong>${esc(fmtTime(b.start_time))}–${esc(fmtTime(b.end_time))}</strong>
         ${roomLine}
         <small>${esc(b.adviser_name||'Advisor not specified')}</small>
         ${purpose ? `<small>${esc(purpose)}</small>` : ''}
       `;
-
       chip.title = `${roomName(n)} | ${fmtTime(b.start_time)}–${fmtTime(b.end_time)} | ${b.adviser_name||''}${purpose?' | '+purpose:''}`;
-
       dayColumn.appendChild(chip);
     });
-
     calendar.appendChild(dayColumn);
   });
 
-  const visibleCount = bookingsInWeek.filter(
-    b=>filteredRooms.includes(roomNumber(b.room_number))
-  ).length;
-
-  $('calendarStatus').textContent =
-    `${visibleCount} booking(s) ${filter==='All rooms'?'across all rooms':`for ${roomName(filter)}`} this week. Calendar refreshes automatically.`;
+  const visibleCount = bookingsInWeek.filter(b=>filteredRooms.includes(roomNumber(b.room_number))).length;
+  $('calendarStatus').textContent = `${visibleCount} booking(s) ${filter==='All rooms'?'across all rooms':`for ${roomName(filter)}`} this week. Calendar refreshes automatically.`;
 }
 
 function renderDailySchedule() {
   const date = $('filterDate').value || localDate();
   const filter = $('filterRoom').value;
-
   const list = allBookings
     .filter(b=>b.booking_date===date)
     .filter(b=>filter==='All rooms'||roomNumber(b.room_number)===roomNumber(filter))
     .sort((a,b)=>fmtTime(a.start_time).localeCompare(fmtTime(b.start_time)));
-
   displayedBookings = list;
 
   $('schedule').innerHTML = list.length ? list.map(b=>`
@@ -346,24 +514,19 @@ function renderDailySchedule() {
       <button type="button" class="danger cancel-booking" data-booking-id="${esc(b.id)}">Cancel</button>
     </article>
   `).join('') : '<div class="empty">No bookings for this date and filter.</div>';
-
   showScheduleStatus(`${list.length} booking(s) on ${fmtDate(date)}.`);
 }
 
 async function loadBookings() {
   if (loading) return;
   loading = true;
-
   try {
     const {data,error} = await db.from('room_bookings')
       .select('id,room_number,booking_date,start_time,end_time,adviser_name,meeting_purpose')
       .order('booking_date',{ascending:true})
       .order('start_time',{ascending:true});
-
     if (error) throw error;
-
     allBookings = data || [];
-
     renderStats();
     renderCalendar();
     renderDailySchedule();
@@ -378,7 +541,6 @@ async function loadBookings() {
 
 $('bookingForm').addEventListener('submit',async e=>{
   e.preventDefault();
-
   const adviser = $('advisor').value.trim();
   const date = $('date').value;
   const room = roomNumber($('room').value);
@@ -386,35 +548,15 @@ $('bookingForm').addEventListener('submit',async e=>{
   const end = $('end').value;
   const purpose = $('purpose').value;
 
-  if (!adviser) {
-    msg('Please enter your name.',true);
-    return;
-  }
-
-  if (date<localDate()) {
-    msg('Please select today or a future date.',true);
-    return;
-  }
-
-  if (!start||!end||toMinutes(end)<=toMinutes(start)) {
-    msg('End time must be later than start time.',true);
-    return;
-  }
-
-  if (toMinutes(start)%30!==0||toMinutes(end)%30!==0) {
-    msg('Please select start and end times in 30-minute intervals.',true);
-    return;
-  }
-
-  if (toMinutes(start)<DAY_START||toMinutes(start)>=DAY_END||toMinutes(end)>DAY_END) {
-    msg('Bookings must be between 00:00 and 24:00.',true);
-    return;
-  }
+  if (!adviser) { msg('Please enter your name.',true); return; }
+  if (date<localDate()) { msg('Please select today or a future date.',true); return; }
+  if (!start||!end||toMinutes(end)<=toMinutes(start)) { msg('End time must be later than start time.',true); return; }
+  if (toMinutes(start)%30!==0||toMinutes(end)%30!==0) { msg('Please select start and end times in 30-minute intervals.',true); return; }
+  if (toMinutes(start)<DAY_START||toMinutes(start)>=DAY_END||toMinutes(end)>DAY_END) { msg('Bookings must be between 00:00 and 24:00.',true); return; }
 
   const btn = $('bookingForm').querySelector('button[type="submit"]');
   btn.disabled = true;
   btn.textContent = 'Checking availability…';
-
   try {
     const {data:existing,error:checkError} = await db.from('room_bookings')
       .select('id,start_time,end_time')
@@ -422,25 +564,17 @@ $('bookingForm').addEventListener('submit',async e=>{
       .eq('booking_date',date)
       .lt('start_time',end)
       .gt('end_time',start);
-
     if (checkError) throw checkError;
-
     if (existing&&existing.length) {
       msg(`This room is already booked from ${fmtTime(existing[0].start_time)} to ${fmtTime(existing[0].end_time)}. Please choose another time.`,true);
       return;
     }
 
     btn.textContent = 'Saving booking…';
-
     const {error:insertError} = await db.from('room_bookings').insert([{
-      room_number:room,
-      booking_date:date,
-      start_time:start,
-      end_time:end,
-      adviser_name:adviser,
-      meeting_purpose:purpose
+      room_number:room,booking_date:date,start_time:start,end_time:end,
+      adviser_name:adviser,meeting_purpose:purpose
     }]);
-
     if (insertError) {
       if (insertError.code==='23P01'||/overlap|no_overlapping/i.test(insertError.message||'')) {
         msg('Another adviser has just booked that room for this time. Please choose another slot.',true);
@@ -449,10 +583,8 @@ $('bookingForm').addEventListener('submit',async e=>{
       }
       throw insertError;
     }
-
     $('filterDate').value = date;
     weekStart = getMonday(parseDate(date));
-
     msg('Booking saved and shared with the team.',false,true);
     await loadBookings();
     $('advisor').value = '';
@@ -464,19 +596,15 @@ $('bookingForm').addEventListener('submit',async e=>{
     btn.textContent = 'Confirm booking';
   }
 });
-    $('schedule').addEventListener('click',async e=>{
+
+$('schedule').addEventListener('click',async e=>{
   const btn = e.target.closest('.cancel-booking');
   if (!btn) return;
-
   const id = btn.dataset.bookingId;
-
   if (!id||!confirm('Cancel this booking? This cannot be undone.')) return;
-
   btn.disabled = true;
   btn.textContent = 'Cancelling…';
-
   const {error} = await db.from('room_bookings').delete().eq('id',id);
-
   if (error) {
     console.error(error);
     showScheduleStatus('Could not cancel this booking. Please refresh and try again.',true);
@@ -484,7 +612,6 @@ $('bookingForm').addEventListener('submit',async e=>{
     btn.textContent = 'Cancel';
     return;
   }
-
   showScheduleStatus('Booking cancelled.');
   await loadBookings();
 });
@@ -497,12 +624,10 @@ $('prevWeek').addEventListener('click',()=>{
   weekStart = addDays(weekStart,-7);
   renderCalendar();
 });
-
 $('nextWeek').addEventListener('click',()=>{
   weekStart = addDays(weekStart,7);
   renderCalendar();
 });
-
 $('thisWeek').addEventListener('click',()=>{
   weekStart = getMonday(new Date());
   renderCalendar();
@@ -513,51 +638,28 @@ $('export').addEventListener('click',async()=>{
     .select('booking_date,room_number,start_time,end_time,adviser_name,meeting_purpose')
     .order('booking_date',{ascending:true})
     .order('start_time',{ascending:true});
-
-  if (error) {
-    msg('Could not export bookings. Please try again.',true);
-    return;
-  }
+  if (error) { msg('Could not export bookings. Please try again.',true); return; }
 
   const rows = [
     ['Date','Room','Start','End','Advisor','Purpose'],
-    ...(data||[]).map(b=>[
-      b.booking_date,
-      roomName(b.room_number),
-      fmtTime(b.start_time),
-      fmtTime(b.end_time),
-      b.adviser_name,
-      b.meeting_purpose
-    ])
+    ...(data||[]).map(b=>[b.booking_date,roomName(b.room_number),fmtTime(b.start_time),fmtTime(b.end_time),b.adviser_name,b.meeting_purpose])
   ];
-
-  const csv = rows.map(row=>
-    row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')
-  ).join('\r\n');
-
-  const url = URL.createObjectURL(
-    new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'})
-  );
-
+  const csv = rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const url = URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'}));
   const a = document.createElement('a');
   a.href = url;
   a.download = 'EQ-FIN-meeting-room-bookings.csv';
-
   document.body.appendChild(a);
   a.click();
   a.remove();
-
   URL.revokeObjectURL(url);
 });
 
 populateTimeOptions();
-
 $('date').min = localDate();
 $('date').value = localDate();
 $('filterDate').value = localDate();
-
 loadBookings();
-
 setInterval(loadBookings,REFRESH_MS);
 </script>
 </body>
